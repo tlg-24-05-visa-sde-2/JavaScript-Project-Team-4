@@ -7,6 +7,7 @@ class AuthService {
       } else {
         url = `https://hometownharvest-91162a140111.herokuapp.com/user/auth/login`;
       }
+      console.log("url", url)
 
       const response: Response = await fetch(url, {
         method: "POST",
@@ -34,6 +35,7 @@ class AuthService {
         url = `https://hometownharvest-91162a140111.herokuapp.com/user/auth/signup`;
       }
 
+      console.log("url", url)
       const response: Response = await fetch(url, {
         method: "POST",
         headers: {
@@ -60,6 +62,7 @@ class AuthService {
         url = `https://hometownharvest-91162a140111.herokuapp.com/user/auth/logout`;
       }
 
+      console.log("url", url)
       const response: Response = await fetch(url, {
         method: "POST",
         credentials: "include",
@@ -86,6 +89,8 @@ class AuthService {
         url = `https://hometownharvest-91162a140111.herokuapp.com/user/auth/isLoggedIn`;
       }
 
+      console.log("url", url);
+      console.log("process.env.REACT_APP_PRODUCTION", process.env.REACT_APP_PRODUCTION === "false")
       const response: Response = await fetch(url, {
         credentials: "include",
         method: "GET",

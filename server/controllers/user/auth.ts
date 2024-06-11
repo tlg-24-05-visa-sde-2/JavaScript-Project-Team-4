@@ -1,10 +1,10 @@
 import { Router, Request, Response } from "express";
+var jwt = require("jsonwebtoken");
 import { User, UserDocument } from "../../models/user";
 import bcrypt = require("bcrypt");
 import dotenv from "dotenv";
+import authenticateUser, { AuthenticatedRequest }  from "../../middleware/AuthMiddleware";
 dotenv.config();
-
-var jwt = require("jsonwebtoken");
 
 const router: Router = Router();
 const saltRounds: number = 10;
@@ -108,21 +108,13 @@ router.post("/login", async (req: Request, res: Response): Promise<any> => {
 });
 
 // CHECK IF THE USER IS LOGGEDIN
-router.get("/isLoggedIn", async (req: Request, res: Response): Promise<any> => {
-  const token = req.cookies["HHT"];
-  if (token) {
-    try {
-      const decoded: boolean = jwt.verify(token, secretKey);
-      if(decoded) {
-        res.status(200).json({ message: "You have access" });
-      } else {
-        res.status(401).json({ message: "Invalid or expired token" });
-      }
-    } catch (err) {
-      res.status(401).json({ message: "Invalid or expired token" });
-    }
+router.get("/isLoggedIn", authenticateUser, async (req: AuthenticatedRequest, res: Response) => {
+  // If the middleware passes, the user is authenticated
+  console.log("req.user: ", req.user);
+  if (req.user) {
+      res.status(200).json({ message: "You have access" });
   } else {
-    res.status(401).json({ message: "No token provided" });
+      res.status(401).json({ message: "Invalid or expired token" });
   }
 });
 
