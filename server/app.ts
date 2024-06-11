@@ -14,7 +14,7 @@ db.once("open", () => console.log("Connected to db"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors({
-    origin: '*' ,
+    origin: ['http://localhost:3000', 'https://hometownharvest-91162a140111.herokuapp.com'] ,
     credentials: true
 }));
 
