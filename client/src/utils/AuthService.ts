@@ -1,16 +1,16 @@
 class AuthService {
   static async handleLogin(data: object): Promise<any> {
     try {
-      // let url: string;
-      // if (process.env.REACT_APP_PRODUCTION === "false") {
-      //   url = `http://localhost:3001/user/auth/login`;
-      // } else {
-      //   url = `http://herokuPAGE.com/login`;
-      // }
+      let url: string;
+      if (process.env.REACT_APP_PRODUCTION === "false") {
+        url = `http://localhost:3001/user/auth/login`;
+      } else {
+        url = `https://hometownharvest-91162a140111.herokuapp.com/user/auth/login`;
+      }
 
-      // console.log("url: ", url);
+      console.log("url: ", url);
 
-      const response: Response = await fetch(`http://localhost:3001/user/auth/login`, {
+      const response: Response = await fetch(url, {
         method: "POST",
         credentials: "include", // Remove this if don't need it
         headers: {
@@ -33,7 +33,7 @@ class AuthService {
       if (process.env.REACT_APP_PRODUCTION === "false") {
         url = `http://localhost:3001/user/auth/signup`;
       } else {
-        url = `http://herokuPAGE.com/signup`;
+        url = `https://hometownharvest-91162a140111.herokuapp.com/user/auth/signup`;
       }
 
       const response: Response = await fetch(url, {
@@ -59,7 +59,7 @@ class AuthService {
       if (process.env.REACT_APP_PRODUCTION === "false") {
         url = `http://localhost:3001/user/auth/logout`;
       } else {
-        url = `http://herokuPAGE.com/logout`;
+        url = `https://hometownharvest-91162a140111.herokuapp.com/user/auth/logout`;
       }
 
       const response: Response = await fetch(url, {
@@ -85,7 +85,7 @@ class AuthService {
       if (process.env.REACT_APP_PRODUCTION === "false") {
         url = `http://localhost:3001/user/auth/isLoggedIn`;
       } else {
-        url = `http://herokuPAGE.com/check-session`;
+        url = `https://hometownharvest-91162a140111.herokuapp.com/user/auth/isLoggedIn`;
       }
 
       const response: Response = await fetch(url, {
