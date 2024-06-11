@@ -4,7 +4,7 @@
   "description": "Support for the React TypeScript front end",
   "main": "server.ts",
   "scripts": {
-    "build": "tsc",
+    "tsc": "tsc",
     "start": "ts-node server.ts",
     "watch": "nodemon server.ts",
     "start dev": "ts-node-dev server.ts",
