@@ -13,7 +13,7 @@
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
-    "build": "cd client && npm run build && cd ../server && npm run tsc && mv -i -v ../client/public dist/ && rm -v -rf src",
+    "build": "cd client && npm run build && cd ../server && npm run tsc",
     "deploy": "git add . && git commit -m Heroku && git push heroku main"
   },
   "author": "",
@@ -24,3 +24,5 @@
     "typescript": "^5.4.5"
   }
 }
+
+
