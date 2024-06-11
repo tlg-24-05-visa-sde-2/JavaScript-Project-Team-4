@@ -22,15 +22,19 @@ app.use(cookieParser());
 
 app.use(routes);
 
+const staticPath = '../../client/build'; // Adjust this path based on your directory structure
+
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.resolve(__dirname, '../client/build')));
+  app.use(express.static(path.resolve(__dirname, staticPath)));
+
   app.get('/*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client/build/index.html'));
+    res.sendFile(path.join(__dirname, staticPath, 'index.html'));
   });
 } else {
-  app.get('/', (req, res) => {
-      res.sendFile(path.resolve(__dirname, '../client/build/index.html'));
+  app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, staticPath, 'index.html'));
   });
 }
+
 
 export default app;
