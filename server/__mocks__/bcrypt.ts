@@ -1,3 +1,5 @@
+/// <reference types="jest" />
+
 // import bcrypt from 'bcrypt';
 
 // __mocks__/bcrypt.ts
