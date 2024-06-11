@@ -1,4 +1,5 @@
 import express, { Application } from "express";
+import path from 'path';
 import routes from "./controllers";
 import db from "./config/connection";
 import cors from "cors";
@@ -20,5 +21,16 @@ app.use(cors({
 app.use(cookieParser());
 
 app.use(routes);
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../client/build')));
+    app.get('/*', (req, res) => {
+      res.sendFile(path.join(__dirname, '../client/build/index.html'));
+    });
+  }
+  
+  app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  });
 
 export default app;

@@ -4,7 +4,8 @@
   "description": "Farmers Market E-commerce website",
   "main": "server/server.ts",
   "engines": {
-    "node": "20.10.0"
+    "node": "20.10.0",
+    "npm": "10.8.1"
   },
   "scripts": {
     "start": "node server/server.ts --ignore client",
