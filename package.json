@@ -8,12 +8,12 @@
     "npm": "10.8.1"
   },
   "scripts": {
-    "start": "node server/server.ts --ignore client",
+    "start": "node server/dist/server.ts --ignore client",
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
-    "build": "cd client && npm run build && cd ../server && npm run build",
-    "heroku-postbuild": "npm install -g typescript && tsc"
+    "build": "cd client && npm run build && cd ../server && npm run build && tsc && mv -i -v public dist/ && rm -v -rf src",
+    "deploy": "git add . && git commit -m Heroku && git push heroku main"
   },
   "author": "",
   "license": "ISC",
