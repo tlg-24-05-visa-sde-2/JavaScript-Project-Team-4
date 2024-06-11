@@ -1,0 +1,21 @@
+{
+  "name": "hometownharvest",
+  "version": "1.0.0",
+  "description": "Farmers Market E-commerce website",
+  "main": "server/server.ts",
+  "engines": {
+    "node": "20.10.0"
+  },
+  "scripts": {
+    "start": "node server/server.ts --ignore client",
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "seed": "cd server && npm run seed",
+    "build": "cd client && npm run build"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^5.3.0"
+}
+}
