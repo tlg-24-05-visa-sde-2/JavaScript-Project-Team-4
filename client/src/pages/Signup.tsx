@@ -1,10 +1,10 @@
 /*
-* Welcome to the signup page! Lots of websites use some form of a signup page, here you have the basic neccessities of a signup page
-* You have full control over customization of this page
-* 
-* The form is ready to be validated and ensure matching passwords, it is encouraged that you add a regex to the passwords to enforce modern password strength requirements
-*
-*/
+ * Welcome to the signup page! Lots of websites use some form of a signup page, here you have the basic neccessities of a signup page
+ * You have full control over customization of this page
+ *
+ * The form is ready to be validated and ensure matching passwords, it is encouraged that you add a regex to the passwords to enforce modern password strength requirements
+ *
+ */
 
 /* eslint-disable no-lone-blocks */
 /* eslint-disable jsx-a11y/anchor-is-valid */
@@ -67,20 +67,21 @@ function Signup(): React.ReactElement {
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     event.stopPropagation();
-  
+
     const form = event.currentTarget;
-    const doPasswordsMatch: boolean = formState.password1 === formState.password2;
+    const doPasswordsMatch: boolean =
+      formState.password1 === formState.password2;
 
     // Due to an unknow reason with typescript, we will use this flag to tell the function to submit the request or to show the errors. React bootstraps library is causing issues without it
     let shouldSubmitForm = true;
-  
+
     if (!form.checkValidity() || !doPasswordsMatch) {
       if (!doPasswordsMatch) {
         setPasswordsMatch(false);
       }
       shouldSubmitForm = false;
     }
-    
+
     setValidated(true);
     const data = {
       firstName: formState.firstName,
@@ -94,26 +95,25 @@ function Signup(): React.ReactElement {
       password1: formState.password1,
       password2: formState.password2,
     };
-  
+
     if (shouldSubmitForm) {
       try {
-        console.log("Form Submitted")
+        console.log("Form Submitted");
         const response = await AuthService.handleSignup(data);
 
-        if(response === "User registered successfully") {
+        if (response === "User registered successfully") {
           // Redirect to the login page
           toast.success("User registered successfully");
-          
-          setTimeout(() => { 
-            window.location.replace('/login');
-          }, 3000);
 
+          setTimeout(() => {
+            window.location.replace("/login");
+          }, 3000);
         } else {
           toast.error(response);
         }
         console.log(response);
       } catch (error) {
-        console.error('Signup failed', error);
+        console.error("Signup failed", error);
         toast.error(`error: ${error}`);
       }
     }
@@ -123,7 +123,12 @@ function Signup(): React.ReactElement {
     <div className="signup-wrapper">
       <div className="signup-container">
         <h2>Sign Up</h2>
-        <Form noValidate validated={validated} onSubmit={handleSubmit} className="text-light">
+        <Form
+          noValidate
+          validated={validated}
+          onSubmit={handleSubmit}
+          className="text-light"
+        >
           <Row className="mb-3">
             <Form.Group as={Col} md="6">
               <Form.Label>First Name</Form.Label>
@@ -335,7 +340,6 @@ function Signup(): React.ReactElement {
 }
 
 export default Signup;
-
 
 // Add the following back in if you want to have address information
 

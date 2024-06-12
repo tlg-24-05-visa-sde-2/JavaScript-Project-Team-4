@@ -2,16 +2,22 @@
   background-color: #fefbf7;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   align-items: center;
   justify-content: center;
 }
 
 .signup-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
+  width: 50%;
 }
 
 .signup-container h2 {
+  width: 100%;
   margin-bottom: 20px;
 }
 
@@ -23,4 +29,31 @@
   border-radius: 5px;
   padding: 10px 20px;
   font-weight: bold;
+  width: 100%;
+}
+
+.user-form {
+  flex-direction: column;
+}
+
+.text-light {
+  width: 100%;
+}
+
+.text-light input {
+  width: 100%;
+}
+
+.user-input {
+  width: 100%;
+}
+
+.call-to-register {
+  padding-top: 24px;
+  text-align: center;
+  color: #283618;
+}
+
+.form-check-input[type="checkbox"] {
+  width: 1em;
 }
