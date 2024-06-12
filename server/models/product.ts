@@ -67,4 +67,4 @@ interface ProductDocument extends Document {
 
 const Product = mongoose.model<ProductDocument>("Product", productSchema);
 
-export { Product, ProductDocument };
+export { Product, ProductDocument, productSchema };
