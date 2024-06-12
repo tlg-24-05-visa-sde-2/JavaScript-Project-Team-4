@@ -3,11 +3,13 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Home, Login, Signup } from './pages/index';
+import { AuthProvider, useAuth } from './utils/AuthContext';
 
 function App(): React.ReactElement {
 
   console.log("production: ", process.env.REACT_APP_PRODUCTION)
   return (
+  <AuthProvider>
     <Router>
     <ToastContainer theme="colored" autoClose={2000} />
     <Routes>
@@ -16,6 +18,7 @@ function App(): React.ReactElement {
       <Route path="/login" element={<Login />} />
     </Routes>
   </Router>
+  </AuthProvider>
   );
 }
 
