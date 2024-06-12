@@ -98,3 +98,9 @@
 .carousel-control-prev:hover {
   color: gray;
 }
+
+@media (max-width: 768px) {
+  .call-to-action-slogan {
+    width: 95%;
+  }
+}
