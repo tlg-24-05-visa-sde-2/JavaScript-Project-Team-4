@@ -1,3 +1,7 @@
 .nav-dropdown-profile {
-    margin-right: 10em;
+  margin-right: 10em;
+}
+
+.home-wrapper .bg-body-tertiary {
+  background-color: #fefae0 !important;
 }
