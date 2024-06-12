@@ -54,7 +54,7 @@ class AuthService {
   static async handleLogout(): Promise<any> {
     try {
       let url: string;
-      if (process.env.REACT_APP_PRODUCTION?.trim()) {
+      if (process.env.REACT_APP_PRODUCTION?.trim() === "false") {
         url = `http://localhost:3001/user/auth/logout`;
       } else {
         url = `https://hometownharvest-91162a140111.herokuapp.com/user/auth/logout`;
