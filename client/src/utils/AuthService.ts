@@ -78,6 +78,8 @@ class AuthService {
   }
 
   static async checkLogin(): Promise<boolean> {
+    console.log(process.env.REACT_APP_PRODUCTION)
+    console.log(process.env.REACT_APP_PRODUCTION === "false")
     try {
       let url: string;
       if (process.env.REACT_APP_PRODUCTION === "false") {
