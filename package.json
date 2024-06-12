@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node server/dist/server.js --ignore client",
-    "start-dev": "cd server && tsc && node dist/server.js --ignore client",
+    "start-dev": "cd client && npm run build && cd ../server && tsc && node dist/server.js --ignore client",
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
