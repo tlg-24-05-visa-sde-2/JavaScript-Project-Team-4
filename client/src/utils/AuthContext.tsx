@@ -9,12 +9,12 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider: React.FC = ({children}) => {
+export const AuthProvider: React.FC <{children: React.ReactNode}> = ({children}) => {
     const [isLoggedin, setIsLoggedIn] = useState<boolean>(false);
 
     useEffect(() => {
-        const checkLoginStatus = async () = {
-            const loggedIn = await AuthService.checkLogin();
+        const checkLoginStatus = async () => {
+            const loggedIn  = await AuthService.checkLogin();
             setIsLoggedIn(loggedIn);
         };
 
@@ -22,7 +22,29 @@ export const AuthProvider: React.FC = ({children}) => {
     }, []);
 
     const login = async (data: Object) => {
+        const message = await AuthService.handleLogin(data);
+        if(message === 'Login successful') {
+            setIsLoggedIn(true);
+        }
+    };
+    const logout = async () => {
+        const message = await AuthService.handleLogout();
+        if(message === "Logout successful"){
+            setIsLoggedIn(false);
+        }   
+    };
 
-
+    return (
+        <AuthContext.Provider value ={{isLoggedin, login, logout}}>
+            {children}
+        </AuthContext.Provider>
+    );
+};
+export const useAuth = (): AuthContextType => {
+    const context = useContext(AuthContext);
+    if(!context) {
+        throw new Error('UseAuth must be used within an Authprovider')
     }
-}
+    return context;
+    
+};
