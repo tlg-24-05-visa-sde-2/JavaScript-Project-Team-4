@@ -2,7 +2,7 @@ class AuthService {
   static async handleLogin(data: object): Promise<any> {
     try {
       let url: string;
-      if (process.env.REACT_APP_PRODUCTION === "false") {
+      if (process.env.REACT_APP_PRODUCTION?.trim() === "false") {
         url = `http://localhost:3001/user/auth/login`;
       } else {
         url = `https://hometownharvest-91162a140111.herokuapp.com/user/auth/login`;
@@ -29,7 +29,7 @@ class AuthService {
   static async handleSignup(data: object): Promise<any> {
     try {
       let url: string;
-      if (process.env.REACT_APP_PRODUCTION === "false") {
+      if (process.env.REACT_APP_PRODUCTION?.trim() === "false") {
         url = `http://localhost:3001/user/auth/signup`;
       } else {
         url = `https://hometownharvest-91162a140111.herokuapp.com/user/auth/signup`;
@@ -53,10 +53,10 @@ class AuthService {
     }
   }
 
-  static async handleLogout(): Promise<any> { 
+  static async handleLogout(): Promise<any> {
     try {
       let url: string;
-      if (process.env.REACT_APP_PRODUCTION === "false") {
+      if (process.env.REACT_APP_PRODUCTION?.trim() === "false") {
         url = `http://localhost:3001/user/auth/logout`;
       } else {
         url = `https://hometownharvest-91162a140111.herokuapp.com/user/auth/logout`;
@@ -83,7 +83,7 @@ class AuthService {
   static async checkLogin(): Promise<boolean> {
     try {
       let url: string;
-      if (process.env.REACT_APP_PRODUCTION === "false") {
+      if (process.env.REACT_APP_PRODUCTION?.trim() === "false") {
         url = `http://localhost:3001/user/auth/isLoggedIn`;
       } else {
         url = `https://hometownharvest-91162a140111.herokuapp.com/user/auth/isLoggedIn`;
@@ -99,7 +99,7 @@ class AuthService {
         },
       });
 
-     return response.status === 200; // We just check whether the status is 200 or not using true or false
+      return response.status === 200; // We just check whether the status is 200 or not using true or false
     } catch (error) {
       console.error("error occured while making request", error);
       return false;
