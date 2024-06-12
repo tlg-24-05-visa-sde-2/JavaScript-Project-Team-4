@@ -151,7 +151,7 @@ router.put(
 router.delete(
   "/deleteProduct/:productId",
   authenticateUser,
-  async (req: AuthenticatedRequest, res: Response) => {
+  async (req: AuthenticatedRequest, res: Response): Promise<any> => {
     try {
       const productId: string = req.params.productId;
 
