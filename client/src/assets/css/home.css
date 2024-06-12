@@ -68,6 +68,8 @@
   background-color: #fefbf7;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border-radius: 8px;
+  overflow-y: scroll;
+  padding: 24px;
 }
 
 .popular-products-container h3 {
@@ -103,4 +105,42 @@
   .call-to-action-slogan {
     width: 95%;
   }
+}
+
+.col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.row {
+  row-gap: 12px;
+}
+
+.card {
+  text-align: center;
+}
+
+.card img {
+  padding: 12px;
+}
+
+.card-description {
+  height: 30%;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.product-button {
+  background-color: #283618;
+  --bs-btn-bg: #dda15e;
+  --bs-btn-hover-bg: #606c38;
+  --bs-btn-border-color: #606c38;
+  --bs-btn-hover-border-color: #606c38;
+  --bs-btn-active-bg: #606c38;
+}
+
+.vr {
+  margin-left: 16px;
+  margin-right: 16px;
 }

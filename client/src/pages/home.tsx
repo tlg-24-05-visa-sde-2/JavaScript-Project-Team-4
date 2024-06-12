@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/Nabar";
 import Footer from "../components/Footer";
 import "../assets/css/home.css";
 import CarouselComponent from "../components/Carousel";
+import ProductService from "../utils/ProductService";
+import Products from "./Products";
+
 function Home(): React.ReactElement {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const getProducts = async () => {
+      const response = await ProductService.getAllProducts();
+      setProducts(response.products);
+    };
+    getProducts();
+  }, []);
+
   return (
     <div className="home-wrapper">
       <Navbar />
@@ -25,7 +38,9 @@ function Home(): React.ReactElement {
         </div>
         <div className="popular-products-container">
           <h3>Popular Products</h3>
-          <div className="popular-products"></div>
+          <div className="popular-products">
+            <Products products={products} />
+          </div>
         </div>
 
         <div className="products"></div>
