@@ -60,7 +60,7 @@ router.post("/signup", async (req: Request, res: Response): Promise<any> => {
 // LOGIN
 router.post("/login", async (req: Request, res: Response): Promise<any> => {
   const { emailOrUsername, password } = req.body;
-  console.log("login reached")
+ 
   try {
     // Check if the user exists
     const user: UserDocument | null = await User.findOne({
@@ -110,7 +110,6 @@ router.post("/login", async (req: Request, res: Response): Promise<any> => {
 // CHECK IF THE USER IS LOGGEDIN
 router.get("/isLoggedIn", authenticateUser, async (req: AuthenticatedRequest, res: Response) => {
   // If the middleware passes, the user is authenticated
-  console.log("req.user: ", req.user);
   if (req.user) {
       res.status(200).json({ message: "You have access" });
   } else {
