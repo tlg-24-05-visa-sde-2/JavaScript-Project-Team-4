@@ -75,3 +75,26 @@
   font-weight: bold;
   margin-bottom: 16px;
 }
+
+.carousel-item img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 350px;
+}
+
+.carousel-control-next {
+  color: black;
+}
+
+.carousel-control-next:hover {
+  color: gray;
+}
+
+.carousel-control-prev {
+  color: black;
+}
+
+.carousel-control-prev:hover {
+  color: gray;
+}

@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../components/Nabar";
 import Footer from "../components/Footer";
 import "../assets/css/home.css";
+import CarouselComponent from "../components/Carousel";
 function Home(): React.ReactElement {
   return (
     <div className="home-wrapper">
@@ -15,9 +16,12 @@ function Home(): React.ReactElement {
             </h3>
           </div>
         </div>
+        <div className="navigate-down-home"></div>
         <div className="featured-farmers-container">
           <h3>Featured Farmers</h3>
-          <div className="featured-farmers"></div>
+          <div className="featured-farmers">
+            <CarouselComponent />
+          </div>
         </div>
         <div className="popular-products-container">
           <h3>Popular Products</h3>
