@@ -1,8 +1,8 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import ProductReviews from './ProductReviews';
 //import Orders from '../components/Orders';
 //import Favorites from '.../components/Favorites';
-//import PersonalData from '../components//PersonalData';
+import PersonalData from '../components//PersonalData';
 //import Reviews from '../components/Reviews';
 
 
@@ -13,14 +13,14 @@ interface MainContentProps {
   const MainContent: React.FC<MainContentProps> = ({ activeView }) => {
     const renderContent = () => {
       switch (activeView) {
-        case 'orders':
-          return <Orders />;
-        case 'favorites':
-          return <Favorites />;
-        case 'personal-data':
-          return <PersonalData />;
+      //   case 'orders':
+      //     return <Orders />;
+      //   case 'favorites':
+      //     return <Favorites />;
+       case 'personal-data':
+         return <PersonalData />;
         case 'reviews':
-          return <Reviews />;
+          return <ProductReviews />;
         default:
           return <div>Welcome to your profile!</div>;
       }
