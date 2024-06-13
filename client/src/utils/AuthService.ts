@@ -62,7 +62,6 @@ class AuthService {
         url = `https://hometownharvest-91162a140111.herokuapp.com/user/auth/logout`;
       }
 
-      console.log("url", url)
       const response: Response = await fetch(url, {
         method: "POST",
         credentials: "include",
@@ -81,8 +80,7 @@ class AuthService {
   }
 
   static async checkLogin(): Promise<boolean> {
-    console.log(process.env.REACT_APP_PRODUCTION)
-    console.log(process.env.REACT_APP_PRODUCTION === "false")
+
     try {
       let url: string;
       if (process.env.REACT_APP_PRODUCTION?.trim() === "false") {
@@ -91,8 +89,6 @@ class AuthService {
         url = `https://hometownharvest-91162a140111.herokuapp.com/user/auth/isLoggedIn`;
       }
 
-      console.log("url", url);
-      console.log("process.env.REACT_APP_PRODUCTION", process.env.REACT_APP_PRODUCTION === "false")
       const response: Response = await fetch(url, {
         credentials: "include",
         method: "GET",

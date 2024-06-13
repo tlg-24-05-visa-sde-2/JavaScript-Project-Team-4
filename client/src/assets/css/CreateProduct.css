@@ -1,0 +1,39 @@
+.custom-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.custom-form {
+    border: 2px solid #283618;
+    background-color: #DDA15E !important;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    min-width: 60%;
+    color: #283618 !important;
+    justify-self: center;
+    align-self: center;
+    /* margin: auto; */
+}
+
+.form-label-create {
+    font-size: 1.5rem;
+    color: #606C38;
+}
+
+.custom-input {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+}
+
+.custom-button {
+    background-color: #606C38;
+    border-color: #283618;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.custom-button:hover {
+    background-color: #283618;
+    border-color: #606C38;
+}
