@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
@@ -40,27 +40,36 @@ export default function NavbarComponent(): React.ReactElement {
           >
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/products">Products</Nav.Link>
-            <Nav.Link href="/about" disabled>
-              About
-            </Nav.Link>
+            <Nav.Link href="/about">About</Nav.Link>
           </Nav>
 
           {isAuthenticated ? (
-            <NavDropdown
-              title={<FontAwesomeIcon icon={faUser} />}
-              id="basic-nav-dropdown"
-              className="nav-dropdown-profile"
-            >
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4" onClick={handleLogout}>
-                Logout
-              </NavDropdown.Item>
-            </NavDropdown>
+            <>
+              <Nav>
+                <Nav.Link href="/cart">
+                  {<FontAwesomeIcon icon={faCartShopping} />}
+                </Nav.Link>
+              </Nav>
+              <div className="vr"></div>
+              <NavDropdown
+                title={<FontAwesomeIcon icon={faUser} />}
+                id="basic-nav-dropdown"
+                drop={"start"}
+                className="nav-dropdown-profile"
+              >
+                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.2">
+                  Another action
+                </NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.3">
+                  Something
+                </NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.4" onClick={handleLogout}>
+                  Logout
+                </NavDropdown.Item>
+              </NavDropdown>
+            </>
           ) : (
             <Nav className="d-flex">
               <Nav.Link href="/login">Login</Nav.Link>
