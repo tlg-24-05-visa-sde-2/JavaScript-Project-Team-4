@@ -1,22 +1,17 @@
-import React from 'react';
-import { useAuth } from "../utils/AuthContext";
+import React, {useState} from 'react';
 import Sidebar from '../components/Sidebar';
 import MainContent from '../components/MainContext';
-import './Profile.css';
+import '../assets/css/profile.css';
 
 const Profile: React.FC = () => {
-  const { logout } = useAuth();
-
-  return (
-    <div className="profile-page">
-      <Sidebar />
-      <div className="main-content-wrapper">
-        <MainContent />
-        <button onClick={logout} className="logout-button">Sign Out</button>
+    const [activeView, setActiveView] = useState('default');
+  
+    return (
+      <div className="profile-page">
+        <Sidebar setActiveView={setActiveView} />
+        <MainContent activeView={activeView} />
       </div>
-    </div>
-  );
-};
-
-export default Profile;
-
+    );
+  };
+  
+  export default Profile;

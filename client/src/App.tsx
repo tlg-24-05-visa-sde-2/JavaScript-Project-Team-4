@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Home, Login, Signup } from './pages/index';
+import { Home, Login, Signup, Profile } from './pages/index';
 import { AuthProvider, useAuth } from './utils/AuthContext';
+import ProtectedRoute from './components/ProtectedRoutes';
 
 function App(): React.ReactElement {
 
@@ -16,6 +17,9 @@ function App(): React.ReactElement {
       <Route path="/" element={<Home />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/profile/*"  element={<ProtectedRoute />}>
+        <Route path="" element={<Profile />} />
+      </Route>
     </Routes>
   </Router>
   </AuthProvider>

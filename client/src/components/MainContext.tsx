@@ -5,18 +5,32 @@ import { Route, Routes } from 'react-router-dom';
 //import PersonalData from '../components//PersonalData';
 //import Reviews from '../components/Reviews';
 
-const MainContent: React.FC = () => {
-  return (
-    <main className="main-content">
-      <Routes>
-        <Route path="/profile" element={<div>Welcome to your profile!</div>} />
-        {/* <Route path="/profile/orders" element={<Orders />} />
-        <Route path="/profile/favorites" element={<Favorites />} />
-        <Route path="/profile/personal-data" element={<PersonalData />} />
-        <Route path="/profile/reviews" element={<Reviews />} /> */}
-      </Routes>
-    </main>
-  );
-}; 
 
-export default MainContent;
+interface MainContentProps {
+    activeView: string;
+  }
+  
+  const MainContent: React.FC<MainContentProps> = ({ activeView }) => {
+    const renderContent = () => {
+      switch (activeView) {
+        case 'orders':
+          return <Orders />;
+        case 'favorites':
+          return <Favorites />;
+        case 'personal-data':
+          return <PersonalData />;
+        case 'reviews':
+          return <Reviews />;
+        default:
+          return <div>Welcome to your profile!</div>;
+      }
+    };
+  
+    return (
+      <main className="main-content">
+        {renderContent()}
+      </main>
+    );
+  };
+  
+  export default MainContent;
