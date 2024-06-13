@@ -7,15 +7,16 @@ import About from "./pages/About";
 import UserService from "./utils/UserService";
 import { AuthProvider, useAuth } from "./utils/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoutes";
+import ProductDescription from "./pages/ProductDescription";
 
 function App(): React.ReactElement {
   const [userData, setUserData] = useState({});
 
   const fetchUserdata = async () => {
     const response = await UserService.fetchUserData();
-    if (response.user) {
-      setUserData(response.user);
-    }
+    // if (response.user) {
+    //   setUserData(response.user);
+    // }
   };
 
   useEffect(() => {
@@ -34,6 +35,7 @@ function App(): React.ReactElement {
           <Route path="/profile/*" element={<ProtectedRoute />}>
             <Route path="" element={<Profile />} />
           </Route>
+          <Route path="/product/:id" element={<ProductDescription />} />
         </Routes>
       </Router>
     </AuthProvider>
