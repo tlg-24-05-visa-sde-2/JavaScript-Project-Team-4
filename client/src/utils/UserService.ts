@@ -32,9 +32,9 @@ class UserService {
   static async addProductToCart(productId: string, quantity: number): Promise<any> {
     let url: string;
     if (process.env.REACT_APP_PRODUCTION?.trim() === "false") {
-      url = `http://localhost:3001/user/addToCart/${productId}?quantity=${quantity}`;
+      url = `http://localhost:3001/user/cart/addToCart/${productId}?quantity=${quantity}`;
     } else {
-      url = `https://hometownharvest-91162a140111.herokuapp.com/user/addToCart/${productId}?quantity=${quantity}`;
+      url = `https://hometownharvest-91162a140111.herokuapp.com/user/cart/addToCart/${productId}?quantity=${quantity}`;
     }
 
     try {

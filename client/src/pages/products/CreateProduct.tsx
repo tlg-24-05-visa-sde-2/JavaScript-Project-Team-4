@@ -95,7 +95,7 @@ const CreateProduct: React.FC<CreateProductProps> = ({ props }) => {
 
     return (
         <div className="d-flex justify-content-between flex-column h-100 custom-container">
-            <NavbarComponent />
+            <NavbarComponent props={props} />
             <h1 className='text-center'>Have a fresh goods to offer?</h1>
             <h3 className='text-center'>Fill out the form below to get started!</h3>
             <Form noValidate validated={validated} onSubmit={handleSubmit} className="p-4 bg-light shadow-sm rounded custom-form">

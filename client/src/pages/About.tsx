@@ -4,10 +4,14 @@ import "../assets/css/navbar.css";
 import "../assets/css/home.css";
 import Footer from "../components/Footer";
 
-const About = () => {
+interface AboutProps {
+  props: any;
+}
+
+const About: React.FC<AboutProps> = ({props}) => {
   return (
     <div className="about">
-      <Navbar />
+      <Navbar props={props} />
       <div className="about-picture"></div>
       <div className="about-body-container">
         <div className="about-body-content">

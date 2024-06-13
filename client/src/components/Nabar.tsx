@@ -5,10 +5,19 @@ import { faUser, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import Badge from "react-bootstrap/Badge";
 import AuthService from "../utils/AuthService";
 import "../assets/css/navbar.css";
 
-export default function NavbarComponent(): React.ReactElement {
+interface NavbarProps {
+  props: {
+    userData: {
+      cart?: any[];
+    };
+  };
+}
+
+export default function NavbarComponent({ props }: NavbarProps): React.ReactElement {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
   const handleLogout = async () => {
@@ -46,8 +55,13 @@ export default function NavbarComponent(): React.ReactElement {
           {isAuthenticated ? (
             <>
               <Nav>
-                <Nav.Link href="/cart">
-                  {<FontAwesomeIcon icon={faCartShopping} />}
+                <Nav.Link href="/cart" className="position-relative">
+                  <FontAwesomeIcon icon={faCartShopping} />
+                  {props.userData?.cart && props.userData.cart.length > 0 && (
+                    <Badge pill bg="danger" className="position-absolute top-0 start-100 translate-middle">
+                      {props.userData.cart.length}
+                    </Badge>
+                  )}
                 </Nav.Link>
               </Nav>
               <div className="vr"></div>

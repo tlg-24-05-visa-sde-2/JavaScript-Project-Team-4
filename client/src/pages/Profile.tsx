@@ -5,12 +5,15 @@ import Navbar from '../components/Nabar';
 import Footer from '../components/Footer';
 import '../assets/css/profile.css';
 
+interface ProfileProps {
+    props: any;
+}
 
-const Profile: React.FC = () => {
+const Profile: React.FC<ProfileProps> = ({props}) => {
     const [activeView, setActiveView] = useState('default');
     return (
     <div> 
-        <Navbar />
+        <Navbar props={props} />
         <div className="profile-page">
             <Sidebar setActiveView={setActiveView} />
             <MainContent activeView={activeView} />
