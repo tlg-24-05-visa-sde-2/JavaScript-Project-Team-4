@@ -81,6 +81,7 @@ class ProductService {
       return error;
     }
   }
+
 }
 
 export default ProductService;

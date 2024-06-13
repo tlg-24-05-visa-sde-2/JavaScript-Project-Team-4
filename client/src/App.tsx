@@ -10,6 +10,7 @@ import CreateProduct from "./pages/products/CreateProduct";
 import { AuthProvider } from "./utils/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoutes";
 import ProductDescription from "./pages/ProductDescription";
+import AllProducts from './pages/products/AllProducts';
 
 function App(): React.ReactElement {
   const [userData, setUserData] = useState({});
@@ -17,6 +18,7 @@ function App(): React.ReactElement {
   const [showPicker, setShowPicker] = useState<boolean>(false); // For the FileStack Image Uploader
   const fileStackKey = process.env.REACT_APP_FILESTACK_KEY ?? ""; // FileStack API KEY
 
+  console.log("userData", userData);
   const fetchUserdata = async () => {
     const loggedIn = await AuthService.checkLogin();
     setIsLoggedIn(loggedIn);
@@ -25,9 +27,9 @@ function App(): React.ReactElement {
     }
 
     const response = await UserService.fetchUserData();
-    // if (response.user) {
-    //   setUserData(response.user);
-    // }
+    if (response.user) {
+      setUserData(response.user);
+    }
   };
 
   const handleUploadDone = async (res: any): Promise<any> => {
@@ -64,17 +66,23 @@ function App(): React.ReactElement {
         )}
         <Routes>
           <Route path="/" element={<Home />} />
+          {/* Authentication */}
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          {/* Stripe */}
           <Route path="/payments/setup" element={<Payments />} />
           <Route
             path="/products/create-product"
             element={<CreateProduct props={props} />}
           />
+          {/* PRODUCTS */}
+          <Route path="/products" element={<AllProducts />} />
+          <Route path='/products/create-product' element={<CreateProduct props={props} />} />
+          <Route path="/product/:id" element={<ProductDescription />} />
+          {/* User Profile */}
           <Route path="/profile/*" element={<ProtectedRoute />}>
             <Route path="" element={<Profile />} />
           </Route>
-          <Route path="/product/:id" element={<ProductDescription />} />
         </Routes>
       </Router>
     </AuthProvider>

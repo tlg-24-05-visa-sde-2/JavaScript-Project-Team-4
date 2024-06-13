@@ -4,20 +4,30 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
 interface Product {
-  id: string;
   image: string;
   name: string;
   description: string;
   price: number;
   sellersName: string;
+  _id: string;
 }
 
 interface ProductProps {
   product: Product;
 }
 
+interface FormState {
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+  quantity: number;
+  tags: string[];
+}
+
 function SingleProduct({ product }: ProductProps): React.ReactElement {
-  const { image, name, price, description, sellersName, id } = product;
+  const { image, name, price, description, sellersName, _id } = product;
+
   const [quantity, setQuantity] = useState(1);
 
   const handleQuantityUp = () => {
@@ -36,7 +46,7 @@ function SingleProduct({ product }: ProductProps): React.ReactElement {
 
   return (
     <Card style={{ width: "18rem", height: "100%" }}>
-      <Link to={`/product/${id}`}>
+      <Link to={`/product/${_id}`}>
         <Card.Img
           variant="top"
           src={image}
@@ -45,7 +55,7 @@ function SingleProduct({ product }: ProductProps): React.ReactElement {
       </Link>
 
       <Card.Body>
-        <Link to={`/product/${id}`}>
+        <Link to={`/product/${_id}`}>
           <Card.Title>{name}</Card.Title>
         </Link>
 
