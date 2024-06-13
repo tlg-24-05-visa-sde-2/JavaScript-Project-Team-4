@@ -47,6 +47,8 @@ router.post(
   "/addProduct",
   authenticateUser,
   async (req: AuthenticatedRequest, res: Response) => {
+    console.log("Request body:", req.body)
+
     try {
       const { name, description, price, image, quantityAvailable, tags } =
         req.body;
@@ -59,6 +61,15 @@ router.post(
       const sellersName: string = req.user.username as string;
       const user: any = req.user._id;
 
+      let tagsToAdd: string[];
+
+      const bodyTags: string[] = tags.split(",");
+
+      if (bodyTags.length > 0) {
+        tagsToAdd = bodyTags.map((tag: string) => tag.trim());
+      } else {
+        tagsToAdd = [];
+      }
       // Validate required fields
       if (!name || !description || !price || !image || !quantityAvailable) {
         return res
@@ -75,7 +86,7 @@ router.post(
         quantityAvailable,
         sellersName,
         sellersLocation,
-        tags,
+        tagsToAdd,
         user, // Correct field name
       });
 
