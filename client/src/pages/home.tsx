@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import "../assets/css/home.css";
 import CarouselComponent from "../components/Carousel";
 import ProductService from "../utils/ProductService";
-import Products from "./Products";
+import Products from "./products/Products";
 
 function Home(): React.ReactElement {
   const [products, setProducts] = useState([]);

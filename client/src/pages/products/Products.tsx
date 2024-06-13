@@ -2,7 +2,7 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import SingleProduct from "../components/SingleProduct";
+import SingleProduct from "../../components/SingleProduct";
 
 interface Product {
   id: string;

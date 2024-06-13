@@ -57,7 +57,7 @@ export default function NavbarComponent(): React.ReactElement {
                 drop={"start"}
                 className="nav-dropdown-profile"
               >
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                <NavDropdown.Item href="/products/create-product">New Product</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
                   Another action
                 </NavDropdown.Item>
