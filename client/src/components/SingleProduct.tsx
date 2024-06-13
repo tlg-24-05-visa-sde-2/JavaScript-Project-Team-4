@@ -9,14 +9,25 @@ interface Product {
   description: string;
   price: number;
   sellersName: string;
+  _id: string;
 }
 
 interface ProductProps {
   product: Product;
 }
 
+interface FormState {
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+  quantity: number;
+  tags: string[];
+}
+
 function SingleProduct({ product }: ProductProps): React.ReactElement {
-  const { image, name, price, description, sellersName } = product;
+  const { image, name, price, description, sellersName, _id } = product;
+
 
   return (
     <Card style={{ width: "18rem", height: "100%" }}>

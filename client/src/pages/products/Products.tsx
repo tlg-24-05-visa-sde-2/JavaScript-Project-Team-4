@@ -11,6 +11,7 @@ interface Product {
   price: number;
   sellersName: string;
   image: string;
+  _id: string;
 }
 
 interface ProductsProps {
@@ -21,8 +22,8 @@ function Products({ products }: ProductsProps): React.ReactElement {
   return (
     <Container>
       <Row xs={1} sm={2} md={2} lg={4}>
-        {products.map((product, index) => (
-          <Col>
+        {products.map((product: Product) => (
+          <Col key={product._id}>
             <SingleProduct product={product} />
           </Col>
         ))}

@@ -9,6 +9,7 @@ import AuthService from './utils/AuthService';
 import CreateProduct from './pages/products/CreateProduct';
 import { AuthProvider } from './utils/AuthContext';
 import ProtectedRoute from './components/ProtectedRoutes';
+import AllProducts from './pages/products/AllProducts';
 
 function App(): React.ReactElement {
   const [userData, setUserData] = useState({});
@@ -16,6 +17,7 @@ function App(): React.ReactElement {
   const [showPicker, setShowPicker] = useState<boolean>(false); // For the FileStack Image Uploader
   const fileStackKey = process.env.REACT_APP_FILESTACK_KEY ?? ""; // FileStack API KEY
 
+  console.log("userData", userData);
   const fetchUserdata = async () => {
     const loggedIn = await AuthService.checkLogin();
     setIsLoggedIn(loggedIn);
@@ -64,9 +66,13 @@ function App(): React.ReactElement {
         )}
         <Routes>
           <Route path="/" element={<Home />} />
+          {/* Authentication */}
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          {/* Stripe */}
           <Route path="/payments/setup" element={<Payments />} />
+          {/* PRODUCTS */}
+          <Route path="/products" element={<AllProducts />} />
           <Route path='/products/create-product' element={<CreateProduct props={props} />} />
           <Route path="/profile/*" element={<ProtectedRoute />}>
             <Route path="" element={<Profile />} />
