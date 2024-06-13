@@ -18,7 +18,16 @@ interface Product {
 
 const ProductDescription = (): React.ReactElement => {
   const [product, setProduct] = useState<Product | null>(null);
+  const [quantity, setQuantity] = useState(1);
   const { id } = useParams<{ id?: string }>();
+
+  const handleQuantityUp = () => {
+    setQuantity((quantity) => quantity + 1);
+  };
+
+  const handleQuantityDown = () => {
+    setQuantity((quantity) => quantity - 1);
+  };
 
   useEffect(() => {
     const getSingleProduct = async (id: string) => {
@@ -50,12 +59,25 @@ const ProductDescription = (): React.ReactElement => {
         <div className="product-description">
           <p>{product.description}</p>
         </div>
-        <div className="add-to-cart">
-          <p>${product.price}</p>
-          <Button variant="primary" className="product-button">
-            Add to Cart
+        <div className="quantity-container">
+          <Button onClick={handleQuantityDown} className="quantity-button">
+            -
+          </Button>
+          <input
+            type="text"
+            id="quantity"
+            className="quantity"
+            value={quantity}
+          />
+
+          <Button onClick={handleQuantityUp} className="quantity-button">
+            +
           </Button>
         </div>
+
+        <Button variant="primary" className="product-button">
+          Add to Cart
+        </Button>
       </div>
 
       <Footer />
