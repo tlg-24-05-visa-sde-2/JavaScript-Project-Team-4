@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import { PickerOverlay } from 'filestack-react';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { Home, Login, Signup, Payments, Profile } from './pages/index';
-import UserService from './utils/UserService';
-import AuthService from './utils/AuthService';
-import CreateProduct from './pages/products/CreateProduct';
-import { AuthProvider } from './utils/AuthContext';
-import ProtectedRoute from './components/ProtectedRoutes';
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { PickerOverlay } from "filestack-react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Home, Login, Signup, Payments, Profile } from "./pages/index";
+import UserService from "./utils/UserService";
+import AuthService from "./utils/AuthService";
+import CreateProduct from "./pages/products/CreateProduct";
+import { AuthProvider } from "./utils/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoutes";
+import ProductDescription from "./pages/ProductDescription";
 
 function App(): React.ReactElement {
   const [userData, setUserData] = useState({});
@@ -24,9 +25,9 @@ function App(): React.ReactElement {
     }
 
     const response = await UserService.fetchUserData();
-    if (response.user) {
-      setUserData(response.user);
-    }
+    // if (response.user) {
+    //   setUserData(response.user);
+    // }
   };
 
   const handleUploadDone = async (res: any): Promise<any> => {
@@ -35,11 +36,10 @@ function App(): React.ReactElement {
       localStorage.setItem("fileUrl", fileUrl); // Save the imageUrl to the localStorage
 
       setShowPicker(false); // Close the fileStack uploader
-
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   useEffect(() => {
     fetchUserdata();
@@ -57,8 +57,8 @@ function App(): React.ReactElement {
             onUploadDone={(res: any) => handleUploadDone(res)}
             pickerOptions={{
               onClose: () => {
-                setShowPicker(false)
-              }
+                setShowPicker(false);
+              },
             }}
           />
         )}
@@ -67,10 +67,14 @@ function App(): React.ReactElement {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/payments/setup" element={<Payments />} />
-          <Route path='/products/create-product' element={<CreateProduct props={props} />} />
+          <Route
+            path="/products/create-product"
+            element={<CreateProduct props={props} />}
+          />
           <Route path="/profile/*" element={<ProtectedRoute />}>
             <Route path="" element={<Profile />} />
           </Route>
+          <Route path="/product/:id" element={<ProductDescription />} />
         </Routes>
       </Router>
     </AuthProvider>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
@@ -16,17 +17,23 @@ interface ProductProps {
 }
 
 function SingleProduct({ product }: ProductProps): React.ReactElement {
-  const { image, name, price, description, sellersName } = product;
+  const { image, name, price, description, sellersName, id } = product;
 
   return (
     <Card style={{ width: "18rem", height: "100%" }}>
-      <Card.Img
-        variant="top"
-        src={image}
-        style={{ height: "200px", objectFit: "cover" }}
-      />
+      <Link to={`/product/${id}`}>
+        <Card.Img
+          variant="top"
+          src={image}
+          style={{ height: "200px", objectFit: "cover" }}
+        />
+      </Link>
+
       <Card.Body>
-        <Card.Title>{name}</Card.Title>
+        <Link to={`/product/${id}`}>
+          <Card.Title>{name}</Card.Title>
+        </Link>
+
         <Card.Text>{sellersName}</Card.Text>
         <div className="card-description">
           <Card.Text>{description}</Card.Text>

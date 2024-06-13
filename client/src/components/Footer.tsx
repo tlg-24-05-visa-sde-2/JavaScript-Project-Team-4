@@ -41,13 +41,9 @@ export default function Footer(): React.ReactElement {
             <MDBCol md="3" lg="4" xl="3" className="mx-auto mb-4">
               <h6 className="text-uppercase fw-bold mb-4">
                 <MDBIcon color="secondary" icon="gem" className="me-3" />
-                Company name
+                Hometown Harvest
               </h6>
-              <p>
-                Here you can use rows and columns to organize your footer
-                content. Lorem ipsum dolor sit amet, consectetur adipisicing
-                elit.
-              </p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
             </MDBCol>
 
             <MDBCol md="2" lg="2" xl="2" className="mx-auto mb-4">
@@ -106,7 +102,7 @@ export default function Footer(): React.ReactElement {
               </p>
               <p>
                 <MDBIcon color="secondary" icon="envelope" className="me-3" />
-                info@example.com
+                hometownharvest@gmail.com
               </p>
               <p>
                 <MDBIcon color="secondary" icon="phone" className="me-3" /> + 01
@@ -125,9 +121,9 @@ export default function Footer(): React.ReactElement {
         className="text-center p-4"
         style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
       >
-        © 2021 Copyright:
+        © 2024 Copyright:
         <a className="text-reset fw-bold" href="https://mdbootstrap.com/">
-          YOUR WEBSITE
+          HOMETOWN HARVEST
         </a>
       </div>
     </MDBFooter>
