@@ -126,7 +126,7 @@
 }
 
 .card-description {
-  height: 30%;
+  height: 25%;
   margin-bottom: 16px;
   overflow: hidden;
 }
@@ -138,6 +138,7 @@
   --bs-btn-border-color: #606c38;
   --bs-btn-hover-border-color: #606c38;
   --bs-btn-active-bg: #606c38;
+  margin-bottom: 12px;
 }
 
 .vr {
@@ -179,4 +180,26 @@
   align-items: center;
   justify-content: center;
   width: 60%;
+}
+
+.quantity {
+  width: 25px;
+  height: 25px;
+}
+
+.quantity-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 0;
+}
+
+.quantity-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 8px;
 }
