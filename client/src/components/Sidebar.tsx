@@ -8,10 +8,8 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ setActiveView }) => {
   return (
     <aside className="sidebar">
-      <button onClick={() => setActiveView('orders')}>Orders</button>
-      <button onClick={() => setActiveView('favorites')}>Favorites</button>
       <button onClick={() => setActiveView('personal-data')}>Personal Data</button>
-      <button onClick={() => setActiveView('reviews')}>Reviews</button>
+      <button onClick={() => setActiveView('product-reviews')}>Product Reviews</button>
     </aside>
   );
 };

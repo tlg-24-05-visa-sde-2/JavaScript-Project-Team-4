@@ -1,36 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PersonalData from './PersonalData';
 import ProductReviews from './ProductReviews';
-//import Orders from '../components/Orders';
-//import Favorites from '.../components/Favorites';
-import PersonalData from '../components//PersonalData';
-//import Reviews from '../components/Reviews';
 
+interface MainContentProps extends React.PropsWithChildren<{}> {
+  user: any;
+}
 
-interface MainContentProps {
-    activeView: string;
-  }
-  
-  const MainContent: React.FC<MainContentProps> = ({ activeView }) => {
-    const renderContent = () => {
-      switch (activeView) {
-      //   case 'orders':
-      //     return <Orders />;
-      //   case 'favorites':
-      //     return <Favorites />;
-       case 'personal-data':
-         return <PersonalData />;
-        case 'reviews':
-          return <ProductReviews />;
-        default:
-          return <div>Welcome to your profile!</div>;
-      }
-    };
-  
-    return (
-      <main className="main-content">
-        {renderContent()}
-      </main>
-    );
+const MainContent: React.FC<MainContentProps> = ({ user }) => {
+  const [activeView, setActiveView] = useState('default');
+
+  const renderContent = () => {
+    switch (activeView) {
+      case 'personal-data':
+        return <PersonalData user={user} />;
+      case 'product-reviews':
+        return <ProductReviews />;
+      default:
+        return <div>Welcome to your profile!</div>;
+    }
   };
-  
-  export default MainContent;
+
+  return (
+    <main className="main-content">
+      {renderContent()}
+    </main>
+  );
+};
+
+export default MainContent;

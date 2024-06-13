@@ -24,6 +24,7 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
+    "@stripe/react-connect-js": "^3.3.8",
     "@types/axios": "^0.14.0",
     "axios": "^1.7.2"
   }

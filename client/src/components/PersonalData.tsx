@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import UserService from '../utils/UserService';
 
 interface UserData {
   username: string;
@@ -12,18 +13,19 @@ interface UserData {
   zip: string;
 }
 
-const PersonalData: React.FC = () => {
-  const [userData, setUserData] = useState<UserData | null>(null);
+interface PersonalDataProps {
+    user: UserData;
+}
+
+const PersonalData: React.FC<PersonalDataProps> = ({user}) => {
+  const [userData, setUserData] = useState(user);
   const [editMode, setEditMode] = useState(false);
 
   useEffect(() => {
-    // Fetch user data when component mounts
     const fetchUserData = async () => {
-      try {
-        const response = await axios.get<UserData>('/api/user'); // Update with your endpoint
-        setUserData(response.data);
-      } catch (error) {
-        console.error('Error fetching user data:', error);
+      const data = await UserService.fetchUserData();
+      if (data) {
+        setUserData(data);
       }
     };
 
@@ -36,7 +38,7 @@ const PersonalData: React.FC = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setUserData((prev) => (prev ? { ...prev, [name]: value } : null));
+    setUserData((prev: any) => (prev ? { ...prev, [name]: value } : null));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
