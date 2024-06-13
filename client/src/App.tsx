@@ -46,7 +46,6 @@ function App(): React.ReactElement {
   const props = { setShowPicker, showPicker, userData, isLoggedIn } as any;
 
   return (
-  <AuthProvider>
     <Router>
     <ToastContainer theme="colored" autoClose={2000} />
     {showPicker && (
@@ -68,7 +67,6 @@ function App(): React.ReactElement {
       <Route path='/products/create-product' element={<CreateProduct props={props} />}/>
     </Routes>
   </Router>
-  </AuthProvider>
   );
 }
 
