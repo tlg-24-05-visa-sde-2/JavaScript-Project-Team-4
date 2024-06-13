@@ -1,13 +1,23 @@
-import exp from "constants";
-import React from "react";
+import React, {useState} from 'react';
+import Sidebar from '../components/Sidebar';
+import MainContent from '../components/MainContext';
+import Navbar from '../components/Nabar';
+import Footer from '../components/Footer';
+import '../assets/css/profile.css';
 
-function Profile(): React.ReactElement {
+
+const Profile: React.FC = () => {
+    const [activeView, setActiveView] = useState('default');
     return (
-        <div>
-            <h1>Profile</h1>
+    <div> 
+        <Navbar />
+        <div className="profile-page">
+            <Sidebar setActiveView={setActiveView} />
+            <MainContent activeView={activeView} />
         </div>
+        <Footer />
+    </div>
     );
-}
-
-export default Profile;
-
+  };
+  
+  export default Profile;
