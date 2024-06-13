@@ -13,6 +13,7 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import AuthService from "../utils/AuthService";
 import { Link } from "react-router-dom";
+import Navbar from "../components/Nabar";
 
 interface FormState {
   emailOrUsername: string;
@@ -74,60 +75,63 @@ function Login(): React.ReactElement {
   };
 
   return (
-    <div className="signup-wrapper">
-      <div className="signup-container">
-        <h2>Welcome Back</h2>
-        <Form
-          noValidate
-          validated={validated}
-          onSubmit={handleSubmit}
-          className="text-light"
-        >
-          <Col className="mb-4 user-form">
-            <Form.Group as={Col} md="12" className="mb-5 user-input">
-              <Form.Label>Username or Email</Form.Label>
-              <Form.Control
-                required
-                name="emailOrUsername"
-                id="emailOrUsername"
-                type="text"
-                placeholder="example@email.com"
-                autoComplete="example@email.com"
-                onChange={handleInputChange}
-                defaultValue=""
-              />
-              <Form.Control.Feedback type="invalid">
-                Please provide a Username or Email.
-              </Form.Control.Feedback>
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group as={Col} className="mb-5" md="12 user-input">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                required
-                name="password"
-                id="password"
-                type="password"
-                placeholder="password123"
-                autoComplete="password"
-                onChange={handleInputChange}
-                defaultValue=""
-              />
-              <Form.Control.Feedback type="invalid">
-                Please provide a password.
-              </Form.Control.Feedback>
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            </Form.Group>
-          </Col>
-          <Button type="submit" className="text-center">
-            Login
-          </Button>
-          <p className="call-to-register">
-            Not registered yet? <Link to="/signup">Create an account</Link>
-          </p>
-        </Form>
+    <>
+      <Navbar />
+      <div className="signup-wrapper">
+        <div className="signup-container">
+          <h2>Welcome Back</h2>
+          <Form
+            noValidate
+            validated={validated}
+            onSubmit={handleSubmit}
+            className="text-light"
+          >
+            <Col className="mb-4 user-form">
+              <Form.Group as={Col} md="12" className="mb-5 user-input">
+                <Form.Label>Username or Email</Form.Label>
+                <Form.Control
+                  required
+                  name="emailOrUsername"
+                  id="emailOrUsername"
+                  type="text"
+                  placeholder="example@email.com"
+                  autoComplete="example@email.com"
+                  onChange={handleInputChange}
+                  defaultValue=""
+                />
+                <Form.Control.Feedback type="invalid">
+                  Please provide a Username or Email.
+                </Form.Control.Feedback>
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group as={Col} className="mb-5" md="12 user-input">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  required
+                  name="password"
+                  id="password"
+                  type="password"
+                  placeholder="password123"
+                  autoComplete="password"
+                  onChange={handleInputChange}
+                  defaultValue=""
+                />
+                <Form.Control.Feedback type="invalid">
+                  Please provide a password.
+                </Form.Control.Feedback>
+                <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+              </Form.Group>
+            </Col>
+            <Button type="submit" className="text-center">
+              Login
+            </Button>
+            <p className="call-to-register">
+              Not registered yet? <Link to="/signup">Create an account</Link>
+            </p>
+          </Form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
