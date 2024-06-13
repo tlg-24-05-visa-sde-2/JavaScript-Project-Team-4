@@ -10,17 +10,6 @@ import CreateProduct from "./pages/products/CreateProduct";
 import { AuthProvider } from "./utils/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoutes";
 import ProductDescription from "./pages/ProductDescription";
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import { PickerOverlay } from 'filestack-react';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { Home, Login, Signup, Payments, Profile } from './pages/index';
-import UserService from './utils/UserService';
-import AuthService from './utils/AuthService';
-import CreateProduct from './pages/products/CreateProduct';
-import { AuthProvider } from './utils/AuthContext';
-import ProtectedRoute from './components/ProtectedRoutes';
 import AllProducts from './pages/products/AllProducts';
 
 function App(): React.ReactElement {
@@ -38,9 +27,9 @@ function App(): React.ReactElement {
     }
 
     const response = await UserService.fetchUserData();
-    // if (response.user) {
-    //   setUserData(response.user);
-    // }
+    if (response.user) {
+      setUserData(response.user);
+    }
   };
 
   const handleUploadDone = async (res: any): Promise<any> => {
@@ -89,10 +78,11 @@ function App(): React.ReactElement {
           {/* PRODUCTS */}
           <Route path="/products" element={<AllProducts />} />
           <Route path='/products/create-product' element={<CreateProduct props={props} />} />
+          <Route path="/product/:id" element={<ProductDescription />} />
+          {/* User Profile */}
           <Route path="/profile/*" element={<ProtectedRoute />}>
             <Route path="" element={<Profile />} />
           </Route>
-          <Route path="/product/:id" element={<ProductDescription />} />
         </Routes>
       </Router>
     </AuthProvider>

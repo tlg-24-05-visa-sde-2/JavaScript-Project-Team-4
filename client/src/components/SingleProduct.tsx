@@ -28,7 +28,6 @@ interface FormState {
 function SingleProduct({ product }: ProductProps): React.ReactElement {
   const { image, name, price, description, sellersName, _id } = product;
 
-  const { image, name, price, description, sellersName, id } = product;
   const [quantity, setQuantity] = useState(1);
 
   const handleQuantityUp = () => {
@@ -47,7 +46,7 @@ function SingleProduct({ product }: ProductProps): React.ReactElement {
 
   return (
     <Card style={{ width: "18rem", height: "100%" }}>
-      <Link to={`/product/${id}`}>
+      <Link to={`/product/${_id}`}>
         <Card.Img
           variant="top"
           src={image}
@@ -56,7 +55,7 @@ function SingleProduct({ product }: ProductProps): React.ReactElement {
       </Link>
 
       <Card.Body>
-        <Link to={`/product/${id}`}>
+        <Link to={`/product/${_id}`}>
           <Card.Title>{name}</Card.Title>
         </Link>
 
