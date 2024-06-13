@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -18,6 +18,21 @@ interface ProductProps {
 
 function SingleProduct({ product }: ProductProps): React.ReactElement {
   const { image, name, price, description, sellersName, id } = product;
+  const [quantity, setQuantity] = useState(1);
+
+  const handleQuantityUp = () => {
+    setQuantity((quantity) => quantity + 1);
+  };
+
+  const handleQuantityDown = () => {
+    setQuantity((quantity) => {
+      if (quantity === 1) {
+        return quantity;
+      } else {
+        return quantity - 1;
+      }
+    });
+  };
 
   return (
     <Card style={{ width: "18rem", height: "100%" }}>
@@ -40,6 +55,22 @@ function SingleProduct({ product }: ProductProps): React.ReactElement {
         </div>
 
         <Card.Text>from ${price}</Card.Text>
+        <div className="quantity-container">
+          <Button onClick={handleQuantityDown} className="quantity-button">
+            -
+          </Button>
+          <input
+            type="text"
+            id="quantity"
+            className="quantity"
+            value={quantity}
+          />
+
+          <Button onClick={handleQuantityUp} className="quantity-button">
+            +
+          </Button>
+        </div>
+
         <Button variant="primary" className="product-button">
           Add to Cart
         </Button>

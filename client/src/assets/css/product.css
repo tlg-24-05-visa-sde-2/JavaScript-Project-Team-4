@@ -19,3 +19,20 @@
   flex-direction: column;
   justify-content: flex-end;
 }
+
+.quantity-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 0;
+}
+
+.quantity-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 8px;
+}
