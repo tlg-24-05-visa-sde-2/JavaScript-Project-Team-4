@@ -9,6 +9,7 @@ import AuthService from "./utils/AuthService";
 import CreateProduct from "./pages/products/CreateProduct";
 import { AuthProvider } from "./utils/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoutes";
+import ProductDescription from "./pages/ProductDescription";
 
 function App(): React.ReactElement {
   const [userData, setUserData] = useState({});
