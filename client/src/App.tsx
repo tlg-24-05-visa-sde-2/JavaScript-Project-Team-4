@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import { PickerOverlay } from 'filestack-react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Home, Login, Signup, Payments } from './pages/index';
+import { Home, Login, Signup, Payments, Profile } from './pages/index';
 import UserService from './utils/UserService';
 import AuthService from './utils/AuthService';
 import CreateProduct from './pages/products/CreateProduct';
@@ -46,6 +46,7 @@ function App(): React.ReactElement {
   const props = { setShowPicker, showPicker, userData, isLoggedIn } as any;
 
   return (
+  <AuthProvider>
     <Router>
     <ToastContainer theme="colored" autoClose={2000} />
     {showPicker && (
@@ -67,6 +68,7 @@ function App(): React.ReactElement {
       <Route path='/products/create-product' element={<CreateProduct props={props} />}/>
     </Routes>
   </Router>
+  </AuthProvider>
   );
 }
 
