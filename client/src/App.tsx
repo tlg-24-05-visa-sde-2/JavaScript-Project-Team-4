@@ -8,6 +8,7 @@ import UserService from './utils/UserService';
 import AuthService from './utils/AuthService';
 import CreateProduct from './pages/products/CreateProduct';
 import { AuthProvider } from './utils/AuthContext';
+import ProtectedRoute from './components/ProtectedRoutes';
 
 function App(): React.ReactElement {
   const [userData, setUserData] = useState({});
@@ -67,7 +68,9 @@ function App(): React.ReactElement {
           <Route path="/login" element={<Login />} />
           <Route path="/payments/setup" element={<Payments />} />
           <Route path='/products/create-product' element={<CreateProduct props={props} />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/*" element={<ProtectedRoute />}>
+            <Route path="" element={<Profile />} />
+          </Route>
         </Routes>
       </Router>
     </AuthProvider>
