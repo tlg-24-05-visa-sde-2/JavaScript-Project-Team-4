@@ -5,28 +5,28 @@ body {
   padding: 0;
 }
 
-.sidebar {
-  background-color: #1dbe4517;
+.sidebar2 {
+  background-color: #d6ddd865;
   padding: 20px darkgreen;
   border-radius: 10px;
 }
 
-.sidebar h2 {
+.sidebar2 h2 {
   text-align: center;
   color: #333;
 }
 
-.sidebar button {
+.sidebar2 button {
   width: 100%;
   padding: 10px;
   margin: 5px 0;
   border: 1px solid #333;
-  border-radius: 5px;
-  background-color: #f0f7f217;
+  border-radius: 1px;
+  background-color: #fff;
   cursor: pointer;
 }
 
-.sidebar button:hover {
+.sidebar2 button:hover {
   background-color: #ddd;
 }
 
