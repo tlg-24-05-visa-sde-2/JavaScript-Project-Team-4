@@ -92,7 +92,7 @@ router.post('/create-checkout-session', authenticateUser, async (req: Authentica
     line_items: lineItems,
     mode: 'payment',
     ui_mode: 'embedded',
-    return_url: `${url}/checkout/return?session_id={CHECKOUT_SESSION_ID}`
+    return_url: `https://hometownharvest-91162a140111.herokuapp.com/checkout/return?session_id={CHECKOUT_SESSION_ID}`
   });
 
   res.send({clientSecret: session.client_secret});
