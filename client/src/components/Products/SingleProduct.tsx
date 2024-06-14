@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import UserService from "../../utils/UserService";
+import { toast } from "react-toastify";
 
 interface Product {
   image: string;
@@ -14,18 +16,10 @@ interface Product {
 
 interface ProductProps {
   product: Product;
+  props: any;
 }
 
-interface FormState {
-  name: string;
-  description: string;
-  price: number;
-  image: string;
-  quantity: number;
-  tags: string[];
-}
-
-function SingleProduct({ product }: ProductProps): React.ReactElement {
+function SingleProduct({ product, props }: ProductProps): React.ReactElement {
   const { image, name, price, description, sellersName, _id } = product;
 
   const [quantity, setQuantity] = useState(1);
@@ -35,14 +29,30 @@ function SingleProduct({ product }: ProductProps): React.ReactElement {
   };
 
   const handleQuantityDown = () => {
-    setQuantity((quantity) => {
-      if (quantity === 1) {
-        return quantity;
-      } else {
-        return quantity - 1;
-      }
-    });
+    setQuantity((quantity) => (quantity > 1 ? quantity - 1 : quantity));
   };
+
+  // Add this handler
+  const handleQuantityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(event.target.value, 10);
+    if (!isNaN(value) && value > 0) {
+      setQuantity(value);
+    }
+  };
+
+  const addProductToCart = async (e: any) => {
+    e.preventDefault();
+
+    const response = await UserService.addProductToCart(_id, quantity);
+    if (response.message  === "Product added to shopping cart") {
+      props.setReRender(true);
+      toast.success(response.message, {
+        position: "top-center",
+      });
+    } else {
+      toast.error("Error adding product to cart");
+    }
+  }
 
   return (
     <Card style={{ width: "18rem", height: "100%" }}>
@@ -74,14 +84,14 @@ function SingleProduct({ product }: ProductProps): React.ReactElement {
             id="quantity"
             className="quantity"
             value={quantity}
+            onChange={handleQuantityChange} // Add this line
           />
-
           <Button onClick={handleQuantityUp} className="quantity-button">
             +
           </Button>
         </div>
 
-        <Button variant="primary" className="product-button">
+        <Button variant="primary" onClick={addProductToCart} className="product-button">
           Add to Cart
         </Button>
       </Card.Body>

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ProductService from "../utils/ProductService";
-import "../assets/css/product.css";
-import Navbar from "../components/Nabar";
-import Footer from "../components/Footer";
 import { Button } from "react-bootstrap";
+import ProductService from "../../utils/ProductService";
+import "../../assets/css/product.css";
+import Navbar from "../../components/Nabar";
+import Footer from "../../components/Footer";
 
 interface Product {
   id: string;
@@ -16,7 +16,11 @@ interface Product {
   sellersLocation: string;
 }
 
-const ProductDescription = (): React.ReactElement => {
+interface ProductDescriptionProps {
+  props: any;
+}
+
+const ProductDescription = ({props}: ProductDescriptionProps): React.ReactElement => {
   const [product, setProduct] = useState<Product | null>(null);
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams<{ id?: string }>();
@@ -46,7 +50,7 @@ const ProductDescription = (): React.ReactElement => {
 
   return (
     <>
-      <Navbar />
+      <Navbar props={props}/>
       <div className="product-container">
         <div className="product-img">
           <img src={product.image} alt={product.name} />

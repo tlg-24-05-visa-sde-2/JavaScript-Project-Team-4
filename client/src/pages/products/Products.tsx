@@ -2,7 +2,7 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import SingleProduct from "../../components/SingleProduct";
+import SingleProduct from "../../components/Products/SingleProduct";
 
 interface Product {
   id: string;
@@ -16,15 +16,16 @@ interface Product {
 
 interface ProductsProps {
   products: Product[];
+  props: any;
 }
 
-function Products({ products }: ProductsProps): React.ReactElement {
+function Products({ products, props }: ProductsProps): React.ReactElement {
   return (
     <Container>
       <Row xs={1} sm={2} md={2} lg={4}>
         {products.map((product: Product) => (
           <Col key={product._id}>
-            <SingleProduct product={product} />
+            <SingleProduct props={props} product={product} />
           </Col>
         ))}
       </Row>

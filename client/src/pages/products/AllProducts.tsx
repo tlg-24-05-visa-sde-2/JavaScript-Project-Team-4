@@ -5,10 +5,14 @@ import AllProductsSideNav from "../../components/Products/AllProductsSideNav";
 import AllCategories from "../../components/Products/AllCategories";
 import Fruits from "../../components/Products/Fruits";
 import Vegetables from "../../components/Products/Vegetables";
-import "../../assets/css/AllProducts.css"
 import ProductService from "../../utils/ProductService";
+import "../../assets/css/AllProducts.css"
 
-function AllProducts(): React.ReactElement {
+interface AllProductsProps {
+    props: any;
+}
+
+function AllProducts({props}: AllProductsProps): React.ReactElement {
     const [category, setCategory] = useState<string>("all");
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [products, setProducts] = useState<any[]>([]);
@@ -32,7 +36,7 @@ function AllProducts(): React.ReactElement {
     const renderCategoryComponent = (): React.ReactElement => {
         switch (category) {
             case "all":
-                return <AllCategories products={products} />; // Pass products to AllCategories
+                return <AllCategories products={products} props={props}/>; // Pass products to AllCategories
             // Add cases for other categories
             case "fruits":
                 return <Fruits />;
@@ -46,7 +50,7 @@ function AllProducts(): React.ReactElement {
     
     return (
         <div className="allProducts-wrapper">
-            <NavbarComponent />
+            <NavbarComponent props={props} />
             <div className="d-flex flex-row">
                 <AllProductsSideNav setCategory={setCategory} currentCategory={category} />
                 <div className="allProducts-content">

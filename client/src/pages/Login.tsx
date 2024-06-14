@@ -76,7 +76,6 @@ function Login(): React.ReactElement {
 
   return (
     <>
-      <Navbar />
       <div className="signup-wrapper">
         <div className="signup-container">
           <h2>Welcome Back</h2>

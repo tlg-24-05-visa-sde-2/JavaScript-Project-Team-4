@@ -9,7 +9,7 @@ import AuthService from "./utils/AuthService";
 import CreateProduct from "./pages/products/CreateProduct";
 import { AuthProvider } from "./utils/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoutes";
-import ProductDescription from "./pages/ProductDescription";
+import ProductDescription from "./pages/products/ProductDescription";
 import AllProducts from './pages/products/AllProducts';
 
 function App(): React.ReactElement {
@@ -17,8 +17,9 @@ function App(): React.ReactElement {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true); // For checking if the user is logged in
   const [showPicker, setShowPicker] = useState<boolean>(false); // For the FileStack Image Uploader
   const fileStackKey = process.env.REACT_APP_FILESTACK_KEY ?? ""; // FileStack API KEY
+  const [reRender, setReRender] = useState<boolean>(false); // For re-rendering the component
 
-  console.log("userData", userData);
+
   const fetchUserdata = async () => {
     const loggedIn = await AuthService.checkLogin();
     setIsLoggedIn(loggedIn);
@@ -36,7 +37,6 @@ function App(): React.ReactElement {
     try {
       const fileUrl = res.filesUploaded[0].url.trim(); // Get the imageUrl from the fileStack response
       localStorage.setItem("fileUrl", fileUrl); // Save the imageUrl to the localStorage
-
       setShowPicker(false); // Close the fileStack uploader
     } catch (error) {
       console.error(error);
@@ -45,9 +45,10 @@ function App(): React.ReactElement {
 
   useEffect(() => {
     fetchUserdata();
-  }, []);
+    setReRender(false);
+  }, [reRender]);
 
-  const props = { setShowPicker, showPicker, userData, isLoggedIn } as any;
+  const props = { setShowPicker, showPicker, userData, isLoggedIn, setReRender } as any;
 
   return (
     <AuthProvider>
@@ -65,7 +66,7 @@ function App(): React.ReactElement {
           />
         )}
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home props={props} />} />
           {/* Authentication */}
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
@@ -76,12 +77,12 @@ function App(): React.ReactElement {
             element={<CreateProduct props={props} />}
           />
           {/* PRODUCTS */}
-          <Route path="/products" element={<AllProducts />} />
+          <Route path="/products" element={<AllProducts props={props} />} />
           <Route path='/products/create-product' element={<CreateProduct props={props} />} />
-          <Route path="/product/:id" element={<ProductDescription />} />
+          <Route path="/product/:id" element={<ProductDescription props={props} />} />
           {/* User Profile */}
           <Route path="/profile/*" element={<ProtectedRoute />}>
-            <Route path="" element={<Profile />} />
+            <Route path="" element={<Profile props={props} />} />
           </Route>
         </Routes>
       </Router>

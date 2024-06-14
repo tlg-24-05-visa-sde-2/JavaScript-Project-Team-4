@@ -1,5 +1,5 @@
 import React from "react";
-import SingleProduct from "../SingleProduct";
+import SingleProduct from "./SingleProduct";
 
 interface Product {
     id: string;
@@ -12,16 +12,17 @@ interface Product {
 }
 
 interface AllCategoriesProps {
-    products: Product[]; // Ensure products is typed as an array of any
+    products: Product[];
+    props: any; // Ensure products is typed as an array of any
 }
 
-const AllCategories: React.FC<AllCategoriesProps> = ({ products }) => {
+const AllCategories: React.FC<AllCategoriesProps> = ({ products, props }) => {
     return (
         <div>
             <h1 className="text-center">All Categories</h1>
             <div className="d-flex flex-wrap justify-content-center">
                 {products && products.map((product: Product) => (
-                    <SingleProduct key={product._id} product={product} />
+                    <SingleProduct props={props} key={product._id} product={product} />
                 ))}
             </div>
         </div>

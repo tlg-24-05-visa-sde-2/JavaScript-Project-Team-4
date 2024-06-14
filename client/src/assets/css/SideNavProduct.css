@@ -1,6 +1,7 @@
 .sidebar {
+    position: -webkit-sticky; /* For Safari */
     position: sticky;
-    top: 20px;
+    top: 0; /* Adjust based on your needs */
     height: 100vh; /* Adjust height based on your layout needs */
     overflow-y: auto; /* Allow scrolling if content exceeds height */
     /* padding: 20px; */
