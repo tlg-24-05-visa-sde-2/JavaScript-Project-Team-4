@@ -203,3 +203,7 @@
   width: 100%;
   padding: 8px;
 }
+
+.card-text {
+  margin-bottom: 0;
+}
