@@ -1,10 +1,12 @@
 import { Router, Request, Response } from "express";
+var jwt = require("jsonwebtoken");
 import { User, UserDocument } from "../../models/user";
 import bcrypt = require("bcrypt");
 import dotenv from "dotenv";
+import authenticateUser, {
+  AuthenticatedRequest,
+} from "../../middleware/AuthMiddleware";
 dotenv.config();
-
-var jwt = require("jsonwebtoken");
 
 const router: Router = Router();
 const saltRounds: number = 10;
@@ -12,7 +14,17 @@ const secretKey: string = process.env.JWT_KEY;
 
 // SIGNUP
 router.post("/signup", async (req: Request, res: Response): Promise<any> => {
-  const { username, password1, email, firstName, lastName, streetAddress, city, state, zip } = req.body;
+  const {
+    username,
+    password1,
+    email,
+    firstName,
+    lastName,
+    streetAddress,
+    city,
+    state,
+    zip,
+  } = req.body;
 
   console.log("req.body", req.body);
   console.log("username: ", username);
@@ -42,7 +54,7 @@ router.post("/signup", async (req: Request, res: Response): Promise<any> => {
       streetAddress,
       city,
       state,
-      zip
+      zip,
     });
 
     // Save the user to the database
@@ -60,14 +72,12 @@ router.post("/signup", async (req: Request, res: Response): Promise<any> => {
 // LOGIN
 router.post("/login", async (req: Request, res: Response): Promise<any> => {
   const { emailOrUsername, password } = req.body;
-  console.log("login reached")
+
   try {
     // Check if the user exists
     const user: UserDocument | null = await User.findOne({
-      $or: [{ email: emailOrUsername }, { username: emailOrUsername }]
+      $or: [{ email: emailOrUsername }, { username: emailOrUsername }],
     });
-
-
 
     if (!user) {
       return res
@@ -87,7 +97,7 @@ router.post("/login", async (req: Request, res: Response): Promise<any> => {
         .json({ message: "Credentials are not recognized" });
     } else {
       // If the credentials are valid, generate a JWT
-        const token: string = jwt.sign({ userId: user._id }, secretKey, {
+      const token: string = jwt.sign({ userId: user._id }, secretKey, {
         expiresIn: "1h", // Token expiration time
       });
 
@@ -108,35 +118,30 @@ router.post("/login", async (req: Request, res: Response): Promise<any> => {
 });
 
 // CHECK IF THE USER IS LOGGEDIN
-router.get("/isLoggedIn", async (req: Request, res: Response): Promise<any> => {
-  const token = req.cookies["HHT"];
-  if (token) {
-    try {
-      const decoded: boolean = jwt.verify(token, secretKey);
-      if(decoded) {
-        res.status(200).json({ message: "You have access" });
-      } else {
-        res.status(401).json({ message: "Invalid or expired token" });
-      }
-    } catch (err) {
+router.get(
+  "/isLoggedIn",
+  authenticateUser,
+  async (req: AuthenticatedRequest, res: Response) => {
+    // If the middleware passes, the user is authenticated
+    if (req.user) {
+      res.status(200).json({ message: "You have access" });
+    } else {
       res.status(401).json({ message: "Invalid or expired token" });
     }
-  } else {
-    res.status(401).json({ message: "No token provided" });
   }
-});
+);
 
 // LOGOUT
 router.post("/logout", async (req: Request, res: Response): Promise<void> => {
   try {
-      res.clearCookie("HHT", {
-        httpOnly: true,
-        secure: false, // Change this when pushing to prod
-      });
+    res.clearCookie("HHT", {
+      httpOnly: true,
+      secure: false, // Change this when pushing to prod
+    });
 
-      res.status(200).json({ message: "Logout successful" });
+    res.status(200).json({ message: "Logout successful" });
   } catch (error) {
-    res.status(500).json({message: "Internal server error"})
+    res.status(500).json({ message: "Internal server error" });
   }
 });
 

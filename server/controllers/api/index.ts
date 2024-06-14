@@ -1,8 +1,10 @@
-import express from 'express';
-const router = express.Router();
+import express, { Router } from 'express';
+const router: Router = express.Router();
 
-// Index for all your API routes and data handling, import and use your routes here
+import productRoutes from './products';
+import paymentRoutes from './payments';
 
-// router.use("/", add routes here);
+router.use("/products", productRoutes);
+router.use("/payments", paymentRoutes);
 
 export default router;

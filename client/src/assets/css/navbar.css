@@ -1,3 +1,35 @@
-.nav-dropdown-profile {
-    margin-right: 10em;
+.bg-body-tertiary {
+  background-color: #fefae0 !important;
+}
+
+.custom-link-nav {
+  background-color: #fefae0 !important;
+  border: 1px solid #283618;
+}
+
+/* Add to navbar.css or another appropriate CSS file */
+.dropdown-menu-custom {
+  background-color: #fefae0 !important;
+  color: #606C38 !important;
+  min-height: 200px; /* Adjust as needed */
+  max-height: 400px; /* Adjust as needed */
+ min-width: 300px;
+  overflow-y: auto;
+  right: 0;
+  padding: 10px;
+  left: auto; /* Ensure the menu is aligned properly */
+  position: absolute; /* Make sure it's positioned correctly */
+  z-index: 1000; /* Ensure it stays above other elements */
+}
+
+.dropdown-item-custom:hover {
+  width: 100%;
+  text-decoration: none;
+  color: #000;
+  list-style: none;
+  background: #DDA15E !important;
+}
+
+.cart-item {
+  
 }

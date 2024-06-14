@@ -1,41 +1,59 @@
-// Generic User Schema for mongoDB, add to or take away to make this fit your needs
+import mongoose, { Document } from "mongoose";
+import { productSchema, ProductDocument } from "./product"; // Import product schema
 
-import mongoose, { Document } from 'mongoose';
+// Single cart item schema
+const cartItemSchema = new mongoose.Schema({
+  product: productSchema,
+  quantity: { type: Number, required: true, default: 1 },
+});
 
 const userSchema = new mongoose.Schema(
-    {
-        username: String,
-        firstName: String,
-        lastName: String,
-        email: String,
-        password: String,
-        streetAddress: String,
-        city: String,
-        state: String,
-        zip: String,
+  {
+    username: { type: String, required: true },
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    streetAddress: { type: String, required: true },
+    city: { type: String, required: true },
+    state: { type: String, required: true },
+    zip: { type: String, required: true },
+    savedProducts: [productSchema], // Embed product schema
+    cart: [cartItemSchema], // Embed cart item schema
+    totalPrice: { type: Number, default: 0 }, // Add totalPrice field
+    stripeAccountId: { type: String, required: false },
+  },
+  {
+    toJSON: {
+      getters: true,
+      virtuals: true,
     },
-    {
-        toJSON: {
-            getters: true,
-            virtuals: true,
-        },
-        id: false,
-    }
+    id: false,
+  }
 );
 
+interface CartItem {
+    product: ProductDocument;
+    quantity: number;
+}
+  
 
 interface UserDocument extends Document {
-    username: string;
-    email: string;
-    password: string;
-    firstName: string;
-    lastName: string;
-    streetAddress: string;
-    city: string;
-    state: string;
-    zip: string;
+  username: string;
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  streetAddress: string;
+  city: string;
+  state: string;
+  zip: string;
+  savedProducts: ProductDocument[];
+  cart: CartItem[];
+  totalPrice: number;
+  stripeAccountId?: string;
 }
 
-const User = mongoose.model<UserDocument>('User', userSchema);
+const User = mongoose.model<UserDocument>("User", userSchema);
 
-export { User, UserDocument }; 
+export { User, UserDocument, cartItemSchema, CartItem };
