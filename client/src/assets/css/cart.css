@@ -13,6 +13,10 @@
   padding: 18px;
 }
 
+.cart-items {
+  overflow-y: scroll;
+}
+
 .price-container {
   display: flex;
   flex-direction: column;
@@ -65,4 +69,12 @@
 .checkout-button {
   text-align: center;
   margin-bottom: 24px;
+}
+
+.total-price {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 24px;
+  font-size: 1.5em;
+  font-weight: bold;
 }
