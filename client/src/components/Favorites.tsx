@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Button, Container, Row, Col } from 'react-bootstrap';
+import {Container, Row, Col } from 'react-bootstrap';
 import UserService from '../utils/UserService';
+import ProductCard from '../components/Products/ProductCard';
 
 interface Product {
   _id: string;
@@ -39,15 +40,11 @@ const Favorites: React.FC<FavoritesProps> = ({ user }) => {
       <Row>
         {favorites.map(product => (
           <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-            <Card className="mb-4">
-              <Card.Img variant="top" src={product.image} />
-              <Card.Body>
-                <Card.Title>{product.name}</Card.Title>
-                <Card.Text>{product.description}</Card.Text>
-                <Card.Text>${product.price}</Card.Text>
-                <Button variant="danger" onClick={() => handleRemoveFavorite(product._id)}>Remove</Button>
-              </Card.Body>
-            </Card>
+            <ProductCard
+              product={product}
+              isFavorite={true}
+              onRemoveFavorite={handleRemoveFavorite}
+            />
           </Col>
         ))}
       </Row>

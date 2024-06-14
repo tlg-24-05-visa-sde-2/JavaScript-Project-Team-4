@@ -112,7 +112,7 @@ router.post('/addFavorite/:productId', authenticateUser, async (req: Authenticat
         return res.status(404).json({ message: 'Product not found' });
       }
   
-      user.favorites.push(product._id);
+      user.favorites.push(product);
       await user.save();
   
       res.status(200).json({ message: 'Product added to favorites', user });

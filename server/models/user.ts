@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema(
     cart: [cartItemSchema], // Embed cart item schema
     totalPrice: { type: Number, default: 0 }, // Add totalPrice field
     stripeAccountId: { type: String, required: false },
+    favorites: [productSchema],
   },
   {
     toJSON: {
@@ -52,6 +53,7 @@ interface UserDocument extends Document {
   cart: CartItem[];
   totalPrice: number;
   stripeAccountId?: string;
+  favorites: ProductDocument[];
 }
 
 const User = mongoose.model<UserDocument>("User", userSchema);
