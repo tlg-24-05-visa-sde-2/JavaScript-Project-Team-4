@@ -36,7 +36,7 @@ const userSchema = new mongoose.Schema(
 interface CartItem {
     product: ProductDocument;
     quantity: number;
-  }
+}
   
 
 interface UserDocument extends Document {
