@@ -60,7 +60,9 @@ export default function NavbarComponent({
   };
 
   const handleMouseLeave = () => {
-    setShowCartDropdown(false);
+    setTimeout(() => {
+      setShowCartDropdown(false);
+    }, 400);
   };
 
   return (
