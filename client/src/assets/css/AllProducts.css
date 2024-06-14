@@ -14,3 +14,17 @@
     align-items: center;
     width: 100%;
 }
+
+.searchbar-custom {
+    border: 1px solid #DDA15E;
+    border-radius: 10px;
+}
+
+.button-search-custom {
+    background-color: #606C38;
+    border: 1px solid #606C38;
+}
+
+.button-search-custom:hover {
+    background-color: #283618;
+}

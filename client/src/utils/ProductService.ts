@@ -82,6 +82,29 @@ class ProductService {
     }
   }
 
+  static async searchProducts(searchValue: string): Promise<any> {
+
+    try {
+      let url: string;
+      if (process.env.REACT_APP_PRODUCTION?.trim() === "false") {
+        url = `http://localhost:3001/api/products/search/${searchValue}`;
+      } else {
+        url = `https://hometownharvest-91162a140111.herokuapp.com/api/products/search/${searchValue}`;
+      }
+
+      const response: Response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json",
+        }
+      });
+      const jsonResponse: any = await response.json();
+      return jsonResponse;
+    } catch (error) {
+      console.error("error occurred while making request", error);
+      return error;
+    }
+  }
 }
 
 export default ProductService;

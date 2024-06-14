@@ -55,12 +55,8 @@ export default function NavbarComponent({
     checkLogin();
   }, []);
 
-  const handleMouseEnter = () => {
-    setShowCartDropdown(true);
-  };
-
-  const handleMouseLeave = () => {
-    setShowCartDropdown(false);
+  const handleCartClick = () => {
+    setShowCartDropdown(!showCartDropdown);
   };
 
   return (
@@ -84,8 +80,7 @@ export default function NavbarComponent({
               <Nav>
                 <Dropdown
                   show={showCartDropdown}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
+                  onClick={handleCartClick}
                   align="end" /* This ensures the dropdown aligns to the end of the container */
                 >
                   <Dropdown.Toggle
@@ -108,14 +103,14 @@ export default function NavbarComponent({
                   <Dropdown.Menu className="dropdown-menu-custom">
                     <Dropdown.Item className="d-flex justify-content-between">
                       <div>
-                        Total: $ {props.userData && props.userData.totalPrice}
+                        Total: ${props.userData && props.userData.totalPrice !== undefined ? props.userData.totalPrice.toFixed(2) : '0.00'}
                       </div>
                     </Dropdown.Item>
                     <div className="d-flex flex-column">
                       {props.userData?.cart &&
                       props.userData.cart.length > 0 ? (
                         props.userData.cart.map((item, index) => (
-                          <div key={index} className="d-flex flex-column m-2">
+                          <div key={index} className="d-flex flex-column m-2 border-bottom">
                             <Link
                               to={`/product/${item.product._id}`}
                               className="dropdown-item-custom"
@@ -168,9 +163,7 @@ export default function NavbarComponent({
                 <NavDropdown.Item href="/checkout">
                   Go to Checkout
                 </NavDropdown.Item>
-                <NavDropdown.Item href="/profile">
-                  Profile
-                </NavDropdown.Item>
+                <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action/3.4" onClick={handleLogout}>
                   Logout

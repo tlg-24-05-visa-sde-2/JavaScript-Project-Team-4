@@ -17,7 +17,12 @@ import About from "./pages/About";
 import Cart from "./pages/Cart";
 
 function App(): React.ReactElement {
-  const [userData, setUserData] = useState({});
+  interface UserData {
+    cart: any[]; // Replace 'any' with the appropriate type for the 'cart' property
+    // Add other properties as needed
+  }
+  
+  const [userData, setUserData] = useState<UserData>({ cart: [] });
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true); // For checking if the user is logged in
   const [showPicker, setShowPicker] = useState<boolean>(false); // For the FileStack Image Uploader
   const fileStackKey = process.env.REACT_APP_FILESTACK_KEY ?? ""; // FileStack API KEY
@@ -51,14 +56,15 @@ function App(): React.ReactElement {
     setReRender(false);
   }, [reRender]);
 
+  const cartLength = userData?.cart?.length ?? 0;
 
   const props = {
     setShowPicker,
     showPicker,
     userData,
     isLoggedIn,
-    fileStackKey,
     setReRender,
+    cartLength,
   } as any;
 
 
@@ -68,7 +74,7 @@ function App(): React.ReactElement {
         <ToastContainer theme="colored" autoClose={2000} />
         {showPicker && (
           <PickerOverlay
-            apikey={fileStackKey}
+            apikey={process.env.REACT_APP_FILESTACK_KEY as string}
             onUploadDone={(res: any) => handleUploadDone(res)}
             pickerOptions={{
               onClose: () => {

@@ -1,11 +1,11 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f8f7dc;
+  background-color: #1dbe4517;
   margin: 0;
   padding: 0;
 }
 
-.sidebar {
+.sidebar2 {
 
   padding: 8px;
   border-radius: 10px;
@@ -26,23 +26,33 @@ body {
   margin-top: 0px;
 }
 
-.sidebar h2 {
+.sidebar2 h2 {
   text-align: center;
   color: #333;
 }
 
-.sidebar button {
+.sidebar2 button {
   width: 100%;
   padding: 8px;
   margin: 5px 0;
   border: 1px solid #333;
   border-radius: 5px;
-  background-color: #fff;
+  background-color: #1dbe4517;
   cursor: pointer;
 }
 
-.sidebar button:hover {
-  background-color: #f7f4f4;
+.sidebar2 button:hover {
+  background-color: #1dbe4517;
+}
+.sidebar2 .btn-signout {
+  background-color: rgba(248, 3, 3, 0.733);
+  color: #fff;
+  border-color: rgba(248, 3, 3, 0.733);
+}
+
+.sidebar2 .btn-signout:hover {
+  background-color: rgb(167, 154, 154);
+  border-color: rgb(180, 172, 172);
 }
 
 /* .profile-header {
@@ -91,3 +101,4 @@ body {
   background-size: cover;
   background-position: center;
 }
+
