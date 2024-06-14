@@ -3,6 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Sidebar from '../components/Sidebar';
 import MainContent from '../components/MainContent';
 import UserService from '../utils/UserService';
+import NavbarComponent from '../components/Nabar';
+import CarouselComponent from '../components/Carousel';
+import Footer from '../components/Footer';
 import '../assets/css/profile.css';
 
 interface User {
@@ -63,31 +66,39 @@ const Profile: React.FC<ProfileProps> = ({ setShowPicker, showPicker, userData, 
   }
 
   return (
-    <div className="container">
-      <div className="row mt-4">
-        <div className="col-md-3">
-          <Sidebar
-            setActiveView={setActiveView}
-            user={user}
-            setShowPicker={setShowPicker}
-            showPicker={showPicker}
-            fileStackKey={fileStackKey}
-          />
-        </div>
-        <div className="col-md-9">
-          <div className="card mb-4">
-            <div className="card-body">
-              <div className="background-image mt-3"></div>
-            </div>
+    <div>
+      <NavbarComponent />
+      <div className="container">
+        <div className="row mt-4">
+          <div className="col-md-3">
+            <Sidebar
+              setActiveView={setActiveView}
+              user={user}
+              setShowPicker={setShowPicker}
+              showPicker={showPicker}
+              fileStackKey={fileStackKey}
+            />
           </div>
-          <MainContent user={user} activeView={activeView} />
+          <div className="col-md-9">
+            <div className="card mb-4">
+              <div className="card-body">
+                <div className="background-image mt-3"></div>
+              </div>
+            </div>
+            <MainContent user={user} activeView={activeView} />
+          </div>
         </div>
       </div>
-      <footer className="footer mt-5 p-3 bg-dark text-white text-center">
-        <p>Check out local markets near you</p>
-      </footer>
+      <div className="carousel-container mt-5">
+        <div className="local-markets-text">
+          CHECK OUT LOCAL MARKETS NEAR YOU
+        </div>
+        <CarouselComponent />
+      </div>
+      <Footer />
     </div>
   );
 };
 
 export default Profile;
+

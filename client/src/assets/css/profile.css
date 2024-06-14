@@ -87,3 +87,15 @@ body {
   background-position: center;
 }
 
+.carousel-container {
+  width: 100%;
+  padding: 20px;
+  background-color: #1dbe4517;
+}
+
+.local-markets-text {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
