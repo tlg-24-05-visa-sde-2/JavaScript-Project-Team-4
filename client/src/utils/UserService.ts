@@ -132,6 +132,68 @@ class UserService {
       return error;
     }
   }
+
+
+  static async addFavoriteProduct(productId: string): Promise<any> {
+    let url: string;
+    if (process.env.REACT_APP_PRODUCTION?.trim() === "false") {
+      url = `http://localhost:3001/user/addFavorite/${productId}`;
+    } else {
+      url = `https://hometownharvest-91162a140111.herokuapp.com/user/addFavorite/${productId}`;
+    }
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+
+      const jsonResponse = await response.json();
+
+      if (response.ok) {
+        return jsonResponse;
+      } else {
+        return jsonResponse.message;
+      }
+    } catch (error) {
+      console.error("Error adding product to favorites:", error);
+      return error;
+    }
+  }
+
+  static async removeFavoriteProduct(productId: string): Promise<any> {
+    let url: string;
+    if (process.env.REACT_APP_PRODUCTION?.trim() === "false") {
+      url = `http://localhost:3001/user/removeFavorite/${productId}`;
+    } else {
+      url = `https://hometownharvest-91162a140111.herokuapp.com/user/removeFavorite/${productId}`;
+    }
+
+    try {
+      const response = await fetch(url, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
+
+      const jsonResponse = await response.json();
+
+      if (response.ok) {
+        return jsonResponse;
+      } else {
+        return jsonResponse.message;
+      }
+    } catch (error) {
+      console.error("Error removing product from favorites:", error);
+      return error;
+    }
+  }
 }
+
 
 export default UserService;
