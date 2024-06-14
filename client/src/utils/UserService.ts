@@ -133,7 +133,6 @@ class UserService {
     }
   }
 
-
   static async addFavoriteProduct(productId: string): Promise<any> {
     let url: string;
     if (process.env.REACT_APP_PRODUCTION?.trim() === "false") {
@@ -147,6 +146,7 @@ class UserService {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem('token')}`
         },
         credentials: "include",
       });
@@ -156,11 +156,11 @@ class UserService {
       if (response.ok) {
         return jsonResponse;
       } else {
-        return jsonResponse.message;
+        return { message: jsonResponse.message || 'Error adding favorite product' };
       }
     } catch (error) {
-      console.error("Error adding product to favorites:", error);
-      return error;
+      console.error("Error adding favorite product:", error);
+      return { message: 'Error adding favorite product' };
     }
   }
 
@@ -177,6 +177,7 @@ class UserService {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.getItem('token')}`
         },
         credentials: "include",
       });
@@ -186,14 +187,15 @@ class UserService {
       if (response.ok) {
         return jsonResponse;
       } else {
-        return jsonResponse.message;
+        return { message: jsonResponse.message || 'Error removing favorite product' };
       }
     } catch (error) {
-      console.error("Error removing product from favorites:", error);
-      return error;
+      console.error("Error removing favorite product:", error);
+      return { message: 'Error removing favorite product' };
     }
   }
 }
+
 
 
 export default UserService;
