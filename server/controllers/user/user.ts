@@ -70,4 +70,31 @@ router.delete('/removeProduct/:productId', authenticateUser, async (req: Authent
     }
 });
 
+router.put('/updateUser', authenticateUser, async (req: AuthenticatedRequest, res: Response) => {
+    const userId = req.user._id;
+    const { username, firstName, lastName, email, streetAddress, city, state, zip } = req.body;
+
+    try {
+        const user: UserDocument | null = await User.findByIdAndUpdate(userId);
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        user.username = username;
+        user.firstName = firstName;
+        user.lastName = lastName;
+        user.email = email;
+        user.streetAddress = streetAddress;
+        user.city = city;
+        user.state = state;
+        user.zip = zip;
+
+        await user.save();
+
+        res.status(200).json({ message: 'User information updated successfully', user });
+    } catch (error) {
+        res.status(500).json({ message: 'Error updating user information', error });
+    }
+});
+
 export default router;

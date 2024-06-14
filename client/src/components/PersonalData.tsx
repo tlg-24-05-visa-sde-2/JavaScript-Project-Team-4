@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import UserService from '../utils/UserService';
+import { Form, Button, Row, Col, Container } from 'react-bootstrap';
 
 interface UserData {
   username: string;
@@ -14,18 +14,20 @@ interface UserData {
 }
 
 interface PersonalDataProps {
-    user: UserData;
+  user: UserData;
 }
 
-const PersonalData: React.FC<PersonalDataProps> = ({user}) => {
-  const [userData, setUserData] = useState(user);
+const PersonalData: React.FC<PersonalDataProps> = ({ user }) => {
+  const [userData, setUserData] = useState<UserData | null>(user);
+  const [originalUserData, setOriginalUserData] = useState<UserData | null>(user);
   const [editMode, setEditMode] = useState(false);
 
   useEffect(() => {
     const fetchUserData = async () => {
       const data = await UserService.fetchUserData();
       if (data) {
-        setUserData(data);
+        setUserData(data.user);
+        setOriginalUserData(data.user);
       }
     };
 
@@ -33,22 +35,25 @@ const PersonalData: React.FC<PersonalDataProps> = ({user}) => {
   }, []);
 
   const handleEditToggle = () => {
+    if (editMode) {
+      setUserData(originalUserData);
+    }
     setEditMode(!editMode);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setUserData((prev: any) => (prev ? { ...prev, [name]: value } : null));
+    setUserData((prev) => (prev ? { ...prev, [name]: value } : null));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSaveChanges = async () => {
     if (!userData) return;
 
     try {
-      const response = await axios.put('/api/user', userData); // Update with your endpoint
-      console.log('User data updated:', response.data);
-      setEditMode(false);
+      const response = await UserService.updateUserData(userData);
+      console.log('User data updated:', response);
+      setOriginalUserData(userData);
+      setEditMode(false); // Toggle off edit mode after saving
     } catch (error) {
       console.error('Error updating user data:', error);
     }
@@ -59,135 +64,155 @@ const PersonalData: React.FC<PersonalDataProps> = ({user}) => {
   }
 
   return (
-    <div>
+    <Container>
       <h1>Personal Data</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username:
-          {editMode ? (
-            <input
-              type="text"
-              name="username"
-              value={userData.username}
-              onChange={handleInputChange}
-              required
-            />
-          ) : (
-            <span>{userData.username}</span>
-          )}
-        </label>
-        <br />
-        <label>
-          First Name:
-          {editMode ? (
-            <input
-              type="text"
-              name="firstName"
-              value={userData.firstName}
-              onChange={handleInputChange}
-              required
-            />
-          ) : (
-            <span>{userData.firstName}</span>
-          )}
-        </label>
-        <br />
-        <label>
-          Last Name:
-          {editMode ? (
-            <input
-              type="text"
-              name="lastName"
-              value={userData.lastName}
-              onChange={handleInputChange}
-              required
-            />
-          ) : (
-            <span>{userData.lastName}</span>
-          )}
-        </label>
-        <br />
-        <label>
-          Email:
-          {editMode ? (
-            <input
-              type="email"
-              name="email"
-              value={userData.email}
-              onChange={handleInputChange}
-              required
-            />
-          ) : (
-            <span>{userData.email}</span>
-          )}
-        </label>
-        <br />
-        <label>
-          Street Address:
-          {editMode ? (
-            <input
-              type="text"
-              name="streetAddress"
-              value={userData.streetAddress}
-              onChange={handleInputChange}
-              required
-            />
-          ) : (
-            <span>{userData.streetAddress}</span>
-          )}
-        </label>
-        <br />
-        <label>
-          City:
-          {editMode ? (
-            <input
-              type="text"
-              name="city"
-              value={userData.city}
-              onChange={handleInputChange}
-              required
-            />
-          ) : (
-            <span>{userData.city}</span>
-          )}
-        </label>
-        <br />
-        <label>
-          State:
-          {editMode ? (
-            <input
-              type="text"
-              name="state"
-              value={userData.state}
-              onChange={handleInputChange}
-              required
-            />
-          ) : (
-            <span>{userData.state}</span>
-          )}
-        </label>
-        <br />
-        <label>
-          Zip:
-          {editMode ? (
-            <input
-              type="text"
-              name="zip"
-              value={userData.zip}
-              onChange={handleInputChange}
-              required
-            />
-          ) : (
-            <span>{userData.zip}</span>
-          )}
-        </label>
-        <br />
-        <button type="button" onClick={handleEditToggle}>
+      <Form>
+        <Row>
+          <Col md={6}>
+            <Form.Group controlId="username">
+              <Form.Label>Username</Form.Label>
+              {editMode ? (
+                <Form.Control
+                  type="text"
+                  name="username"
+                  value={userData.username}
+                  onChange={handleInputChange}
+                  required
+                />
+              ) : (
+                <p>{userData.username}</p>
+              )}
+            </Form.Group>
+          </Col>
+          <Col md={6}>
+            <Form.Group controlId="firstName">
+              <Form.Label>First Name</Form.Label>
+              {editMode ? (
+                <Form.Control
+                  type="text"
+                  name="firstName"
+                  value={userData.firstName}
+                  onChange={handleInputChange}
+                  required
+                />
+              ) : (
+                <p>{userData.firstName}</p>
+              )}
+            </Form.Group>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col md={6}>
+            <Form.Group controlId="lastName">
+              <Form.Label>Last Name</Form.Label>
+              {editMode ? (
+                <Form.Control
+                  type="text"
+                  name="lastName"
+                  value={userData.lastName}
+                  onChange={handleInputChange}
+                  required
+                />
+              ) : (
+                <p>{userData.lastName}</p>
+              )}
+            </Form.Group>
+          </Col>
+          <Col md={6}>
+            <Form.Group controlId="email">
+              <Form.Label>Email</Form.Label>
+              {editMode ? (
+                <Form.Control
+                  type="email"
+                  name="email"
+                  value={userData.email}
+                  onChange={handleInputChange}
+                  required
+                />
+              ) : (
+                <p>{userData.email}</p>
+              )}
+            </Form.Group>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col md={6}>
+            <Form.Group controlId="streetAddress">
+              <Form.Label>Street Address</Form.Label>
+              {editMode ? (
+                <Form.Control
+                  type="text"
+                  name="streetAddress"
+                  value={userData.streetAddress}
+                  onChange={handleInputChange}
+                  required
+                />
+              ) : (
+                <p>{userData.streetAddress}</p>
+              )}
+            </Form.Group>
+          </Col>
+          <Col md={6}>
+            <Form.Group controlId="city">
+              <Form.Label>City</Form.Label>
+              {editMode ? (
+                <Form.Control
+                  type="text"
+                  name="city"
+                  value={userData.city}
+                  onChange={handleInputChange}
+                  required
+                />
+              ) : (
+                <p>{userData.city}</p>
+              )}
+            </Form.Group>
+          </Col>
+        </Row>
+
+        <Row>
+          <Col md={6}>
+            <Form.Group controlId="state">
+              <Form.Label>State</Form.Label>
+              {editMode ? (
+                <Form.Control
+                  type="text"
+                  name="state"
+                  value={userData.state}
+                  onChange={handleInputChange}
+                  required
+                />
+              ) : (
+                <p>{userData.state}</p>
+              )}
+            </Form.Group>
+          </Col>
+          <Col md={6}>
+            <Form.Group controlId="zip">
+              <Form.Label>Zip</Form.Label>
+              {editMode ? (
+                <Form.Control
+                  type="text"
+                  name="zip"
+                  value={userData.zip}
+                  onChange={handleInputChange}
+                  required
+                />
+              ) : (
+                <p>{userData.zip}</p>
+              )}
+            </Form.Group>
+          </Col>
+        </Row>
+
+        <Button variant="primary" onClick={handleEditToggle}>
           {editMode ? 'Cancel' : 'Edit'}
-        </button>
-        {editMode && <button type="submit">Save Changes</button>}
-      </form>
-    </div>
+        </Button>
+        {editMode && <Button variant="success" onClick={handleSaveChanges}>Save Changes</Button>}
+      </Form>
+    </Container>
   );
 };
 
