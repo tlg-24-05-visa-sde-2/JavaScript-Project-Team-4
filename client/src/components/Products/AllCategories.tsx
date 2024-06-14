@@ -1,5 +1,6 @@
 import React from "react";
 import SingleProduct from "./SingleProduct";
+import SingleProductUpdate from "./SingleProductUpdate";
 
 interface Product {
     id: string;
@@ -21,7 +22,7 @@ const AllCategories: React.FC<AllCategoriesProps> = ({ products, props }) => {
         <div>
             <div className="d-flex flex-wrap justify-content-center">
                 {products && products.map((product: Product) => (
-                    <SingleProduct props={props} key={product._id} product={product} />
+                    <SingleProductUpdate props={props} key={product._id} product={product} />
                 ))}
             </div>
         </div>
