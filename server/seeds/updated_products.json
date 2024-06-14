@@ -1,6 +1,6 @@
 [
   {
-    "name": "jam",
+    "name": "Jam",
     "description": "Super hot ghost pepper strawberry jelly",
     "price": 12,
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXpKFirkClVDoBsSbuxIQyQXwC0RjbyOod_Q&s",
@@ -8,11 +8,7 @@
     "quantityAvailable": 50,
     "sellersName": "John Doe",
     "sellersLocation": "New York, USA",
-    "tags": [
-      "Hot",
-      "Pepper",
-      "Jelly"
-    ],
+    "tags": ["Hot", "Pepper", "Jelly"],
     "user": "6667658f9363d2c176fd28c7",
     "priceId": "price_1PROzt2Kq7ZuBPIYjD1Qgl9d"
   },
@@ -25,11 +21,7 @@
     "quantityAvailable": 100,
     "sellersName": "Jane Smith",
     "sellersLocation": "Los Angeles, USA",
-    "tags": [
-      "Organic",
-      "Fruit",
-      "Healthy"
-    ],
+    "tags": ["Organic", "Fruit", "Healthy"],
     "user": "611f3d19a8d8e831a0d9c5e9",
     "priceId": "price_1PROzt2Kq7ZuBPIY3rshTH8s"
   },
@@ -42,11 +34,7 @@
     "quantityAvailable": 50,
     "sellersName": "Fresh Farms",
     "sellersLocation": "California, USA",
-    "tags": [
-      "Organic",
-      "Fruit",
-      "Healthy"
-    ],
+    "tags": ["Organic", "Fruit", "Healthy"],
     "user": "611f3d19a8d8e831a0d9c5e9",
     "priceId": "price_1PROzu2Kq7ZuBPIYkD5WJ7xT"
   },
@@ -59,11 +47,7 @@
     "quantityAvailable": 100,
     "sellersName": "The Roastery",
     "sellersLocation": "Seattle, USA",
-    "tags": [
-      "Coffee",
-      "Premium",
-      "Roasted"
-    ],
+    "tags": ["Coffee", "Premium", "Roasted"],
     "user": "611f3d19a8d8e831a0d9c5e9",
     "priceId": "price_1PROzu2Kq7ZuBPIYLUmXZonS"
   },
@@ -76,11 +60,7 @@
     "quantityAvailable": 30,
     "sellersName": "Zen Creations",
     "sellersLocation": "Portland, USA",
-    "tags": [
-      "Handcrafted",
-      "Soy Candle",
-      "Home Decor"
-    ],
+    "tags": ["Handcrafted", "Soy Candle", "Home Decor"],
     "user": "611f3d19a8d8e831a0d9c5e9",
     "priceId": "price_1PROzv2Kq7ZuBPIYsULJ0FgN"
   },
@@ -93,11 +73,7 @@
     "quantityAvailable": 75,
     "sellersName": "Green Grocers",
     "sellersLocation": "Florida, USA",
-    "tags": [
-      "Organic",
-      "Avocado",
-      "Healthy"
-    ],
+    "tags": ["Organic", "Avocado", "Healthy"],
     "user": "611f3d19a8d8e831a0d9c5e9",
     "priceId": "price_1PROzv2Kq7ZuBPIYlIrxyHPz"
   },
@@ -110,11 +86,7 @@
     "quantityAvailable": 20,
     "sellersName": "Cheese Haven",
     "sellersLocation": "Wisconsin, USA",
-    "tags": [
-      "Cheese",
-      "Artisanal",
-      "Gourmet"
-    ],
+    "tags": ["Cheese", "Artisanal", "Gourmet"],
     "user": "611f3d19a8d8e831a0d9c5e9",
     "priceId": "price_1PROzv2Kq7ZuBPIY2EzzCWS2"
   },
@@ -127,11 +99,7 @@
     "quantityAvailable": 60,
     "sellersName": "Green Fields Farm",
     "sellersLocation": "California, USA",
-    "tags": [
-      "Organic",
-      "Spinach",
-      "Healthy"
-    ],
+    "tags": ["Organic", "Spinach", "Healthy"],
     "user": "611f3d19a8d8e831a0d9c5e9",
     "priceId": "price_1PROzw2Kq7ZuBPIYJhEO9Tec"
   },
@@ -144,11 +112,7 @@
     "quantityAvailable": 40,
     "sellersName": "Artisan Potteries",
     "sellersLocation": "Oregon, USA",
-    "tags": [
-      "Handmade",
-      "Ceramic",
-      "Mug"
-    ],
+    "tags": ["Handmade", "Ceramic", "Mug"],
     "user": "611f3d19a8d8e831a0d9c5e9",
     "priceId": "price_1PROzw2Kq7ZuBPIYOuaZp7xs"
   },
@@ -161,11 +125,7 @@
     "quantityAvailable": 30,
     "sellersName": "Baker's Delight",
     "sellersLocation": "San Francisco, USA",
-    "tags": [
-      "Sourdough",
-      "Bread",
-      "Artisanal"
-    ],
+    "tags": ["Sourdough", "Bread", "Artisanal"],
     "user": "611f3d19a8d8e831a0d9c5e9",
     "priceId": "price_1PROzx2Kq7ZuBPIYP6jz8iPp"
   },
@@ -178,11 +138,7 @@
     "quantityAvailable": 50,
     "sellersName": "Berry Farms",
     "sellersLocation": "Washington, USA",
-    "tags": [
-      "Organic",
-      "Blueberries",
-      "Healthy"
-    ],
+    "tags": ["Organic", "Blueberries", "Healthy"],
     "user": "611f3d19a8d8e831a0d9c5e9",
     "priceId": "price_1PROzx2Kq7ZuBPIYtqcFJ0le"
   },
@@ -195,11 +151,7 @@
     "quantityAvailable": 25,
     "sellersName": "Sweet Confections",
     "sellersLocation": "New York, USA",
-    "tags": [
-      "Chocolate",
-      "Truffles",
-      "Artisanal"
-    ],
+    "tags": ["Chocolate", "Truffles", "Artisanal"],
     "user": "611f3d19a8d8e831a0d9c5e9",
     "priceId": "price_1PROzy2Kq7ZuBPIYcm8RNjnc"
   },
@@ -212,11 +164,7 @@
     "quantityAvailable": 30,
     "sellersName": "Seafood Market",
     "sellersLocation": "Seattle, USA",
-    "tags": [
-      "Seafood",
-      "Salmon",
-      "Fresh"
-    ],
+    "tags": ["Seafood", "Salmon", "Fresh"],
     "user": "611f3d19a8d8e831a0d9c5e9",
     "priceId": "price_1PROzy2Kq7ZuBPIYOJihGyaD"
   }
