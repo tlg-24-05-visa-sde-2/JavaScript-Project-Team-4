@@ -136,8 +136,8 @@ export default function NavbarComponent({ props }: NavbarProps): React.ReactElem
                 <NavDropdown.Item href="/products/create-product">
                   New Product
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Another action
+                <NavDropdown.Item href="/checkout">
+                  Go to Checkout
                 </NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.3">
                   Something

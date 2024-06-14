@@ -11,6 +11,8 @@ import { AuthProvider } from "./utils/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoutes";
 import ProductDescription from "./pages/products/ProductDescription";
 import AllProducts from './pages/products/AllProducts';
+import Checkout from './pages/Checkout';
+import Return from './pages/Return';
 
 function App(): React.ReactElement {
   const [userData, setUserData] = useState({});
@@ -80,6 +82,10 @@ function App(): React.ReactElement {
           <Route path="/products" element={<AllProducts props={props} />} />
           <Route path='/products/create-product' element={<CreateProduct props={props} />} />
           <Route path="/product/:id" element={<ProductDescription props={props} />} />
+
+          {/* Cart/Checkout */}
+          <Route path="/checkout" element={<Checkout props={props} />} />
+          <Route path="/return" element={<Return />} />
           {/* User Profile */}
           <Route path="/profile/*" element={<ProtectedRoute />}>
             <Route path="" element={<Profile props={props} />} />
