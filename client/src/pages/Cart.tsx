@@ -92,7 +92,7 @@ const Cart = ({ props }: cartProps): React.ReactElement => {
         </div>
 
         <div className="checkout-button">
-          <Link to="/cart/checkout">
+          <Link to="/checkout">
             <button className="btn btn-secondary w-50">Checkout</button>
           </Link>
         </div>
