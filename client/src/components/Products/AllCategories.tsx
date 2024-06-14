@@ -3,18 +3,18 @@ import SingleProduct from "./SingleProduct";
 import SingleProductUpdate from "./SingleProductUpdate";
 
 interface Product {
-    id: string;
-    name: string;
-    description: string;
-    price: number;
-    sellersName: string;
-    image: string;
-    _id: string;
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  sellersName: string;
+  image: string;
+  _id: string;
 }
 
 interface AllCategoriesProps {
-    products: Product[];
-    props: any; // Ensure products is typed as an array of any
+  products: Product[];
+  props: any; // Ensure products is typed as an array of any
 }
 
 const AllCategories: React.FC<AllCategoriesProps> = ({ products, props }) => {

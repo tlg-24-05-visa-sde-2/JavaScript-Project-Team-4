@@ -55,14 +55,8 @@ export default function NavbarComponent({
     checkLogin();
   }, []);
 
-  const handleMouseEnter = () => {
-    setShowCartDropdown(true);
-  };
-
-  const handleMouseLeave = () => {
-    setTimeout(() => {
-      setShowCartDropdown(false);
-    }, 400);
+  const handleCartClick = () => {
+    setShowCartDropdown(!showCartDropdown);
   };
 
   return (
@@ -86,8 +80,7 @@ export default function NavbarComponent({
               <Nav>
                 <Dropdown
                   show={showCartDropdown}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
+                  onClick={handleCartClick}
                   align="end" /* This ensures the dropdown aligns to the end of the container */
                 >
                   <Dropdown.Toggle
@@ -170,9 +163,7 @@ export default function NavbarComponent({
                 <NavDropdown.Item href="/checkout">
                   Go to Checkout
                 </NavDropdown.Item>
-                <NavDropdown.Item href="/profile">
-                  Profile
-                </NavDropdown.Item>
+                <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action/3.4" onClick={handleLogout}>
                   Logout
