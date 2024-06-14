@@ -56,25 +56,27 @@ interface Product {
     };
   
     return (
-        <Link to={`/product/${_id}`} className="wrapper">
+        <div className="wrapper">
         <div className="container p-3">
+        <Link to={`/product/${_id}`}>
           <div className="top mb-3" style={{ backgroundImage: `url(${image})` }}></div>
+        </Link>
           <div className="bottom">
             <div className="left">
               <div className="details">
                 <h5>{name}</h5>
                 <p>From: ${price}</p>
               </div>
-              <div className="d-flex flex-column w-100 align-items-center justify-content-center p-1">
-                <div className="buy">
-                    <Button className="button-search-custom" onClick={addProductToCart}>
-                    <FontAwesomeIcon icon={faCartArrowDown} className="icon" />
-                    </Button>
-                </div>
+              <div className="buttons-card-wrapper">
                 <div className="quantity">
                     <Button variant="light" onClick={handleQuantityDown}>-</Button>
                     <input type="text" value={quantity} onChange={handleQuantityChange} />
                     <Button variant="light" onClick={handleQuantityUp}>+</Button>
+                </div>
+                <div className="buy ">
+                    <Button className="button-search-custom" onClick={addProductToCart}>
+                    <FontAwesomeIcon icon={faCartArrowDown} className="icon" />
+                    </Button>
                 </div>
               </div>
             </div>
@@ -88,7 +90,7 @@ interface Product {
             <h4>{description}</h4>
           </div>
         </div>
-      </Link>
+      </div>
     );
   }
   

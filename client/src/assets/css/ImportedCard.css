@@ -58,6 +58,7 @@
           flex-direction: column;
           align-items: center;
           background: #f1f1f1;
+          width: 50%;
           transition: background 0.5s;
           border-left: solid thin rgba(0, 0, 0, 0.1);
           margin-top: 10px;
@@ -67,26 +68,25 @@
             margin-right: 8px;
           }
 
-          &:hover {
-            background: #a6cdde;
-          }
-
           &:hover .icon {
             transform: translateY(3px);
           }
         }
 
         .quantity {
+          justify-self: center;
           display: flex;
           align-items: center;
+          border-left: solid thin rgba(0, 0, 0, 0.1);
           margin-top: 10px;
-
+          margin-left: 20px;
+          width: 100%;
           button {
             background: transparent;
             border: none;
             cursor: pointer;
             font-size: 18px;
-            padding: 5px;
+            /* padding: 5px; */
           }
 
           input {
@@ -167,4 +167,13 @@
       }
     }
   }
+}
+
+.buttons-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-right: 1px;
 }

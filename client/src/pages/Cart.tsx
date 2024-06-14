@@ -5,6 +5,9 @@ import { toast } from "react-toastify";
 import "../assets/css/cart.css";
 import Navbar from "../components/Nabar";
 import Footer from "../components/Footer";
+import { Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowAltCircleLeft, faArrowCircleRight } from "@fortawesome/free-solid-svg-icons";
 
 interface cartProps {
   props: {
@@ -27,78 +30,117 @@ const Cart = ({ props }: cartProps): React.ReactElement => {
     }
   };
 
+  const totalPrice: number = props?.userData?.totalPrice ?? 0;
+
   return (
-    <>
+    <div>
       <Navbar props={props} />
-      <div className="cart-container">
-        <div>
-          <h1>Shopping Cart</h1>
-          <div className="price-container">
-            <div className="price-text">
-              <span>Price</span>
+      <main className="page">
+        <section className="shopping-cart dark">
+          <div className="container">
+            <div className="block-heading">
+              <h2>Shopping Cart</h2>
+              <p>Not finished?</p>
+              <Link to="/products" className="btn continue-shopping">
+                <FontAwesomeIcon icon={faArrowAltCircleLeft} /> Continue Shopping
+              </Link>
             </div>
-            <hr className="price-line"></hr>
-          </div>
-          <div className="cart-items">
-            {props.userData?.cart && props.userData.cart.length > 0 ? (
-              props.userData.cart.map((item, index) => (
-                <div key={index} className="d-flex flex-column m-2">
-                  <Link
-                    to={`/product/${item.product._id}`}
-                    className="dropdown-item-custom"
-                  >
-                    <div className="d-flex align-items-center cart-item">
-                      <img
-                        src={item.product.image}
-                        alt={item.product.name}
-                        style={{
-                          width: "150px",
-                          height: "150px",
-                          marginRight: "10px",
-                        }}
-                      />
-                      <div className="item-horizontal">
-                        <div className="item-left">
-                          <h3 className="item-name">{item.product.name}</h3>
-                          <p>By {item.product.sellersName}</p>
-                          <p>Quantity: {item.quantity}</p>
+            <div className="content">
+              <div className="row">
+                <div className="col-md-12 col-lg-8">
+                  <div className="items">
+                    {/* Replace with dynamic content */}
+                    {props.userData?.cart && props.userData.cart.length > 0 ? (
+                      props.userData.cart.map((item, index) => (
+                        <div className="product" key={index}>
+                          <div className="row">
+                            <div className="col-md-3">
+                              <img
+                                className="img-fluid mx-auto d-block image"
+                                src={item.product.image}
+                                alt={item.product.name}
+                              />
+                            </div>
+                            <div className="col-md-7">
+                              <div className="info">
+                                <div className="row">
+                                  <div className="col-md-6 product-name">
+                                    <h5 className="mb-0">
+                                      <Link
+                                        to={`/product/${item.product._id}`}
+                                        className="text-dark d-inline-block"
+                                      >
+                                        {item.product.name}
+                                      </Link>
+                                    </h5>
+                                  </div>
+                                  <div className="col-md-6 quantity">
+                                    <label htmlFor={`quantity-${index}`}>Quantity:</label>
+                                    <input
+                                      id={`quantity-${index}`}
+                                      type="number"
+                                      value={item.quantity}
+                                      className="form-control quantity-input"
+                                      disabled // Disable for now since it's not clear if this should be editable directly
+                                    />
+                                  </div>
+                                  <div className="col-md-3 price m-5">
+                                    <span>${item.product.price * item.quantity}</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="col-md-2 text-center">
+                              <button
+                                onClick={() => removeItem(item.product._id)}
+                                className="btn btn-sm btn-outline-danger"
+                              >
+                                <i className="fa fa-trash"></i>
+                              </button>
+                            </div>
+                          </div>
                         </div>
-                        <div className="item-price">${item.product.price}</div>
+                      ))
+                    ) : (
+                      <div className="product">
+                        <div className="row">
+                          <div className="col-md-12 text-center">No items in cart</div>
+                        </div>
                       </div>
-                    </div>
-                  </Link>
-                  <div className="remove-button">
-                    <button
-                      onClick={() => removeItem(item.product._id)}
-                      className="btn btn-danger w-25 p-0 mt-1"
-                    >
-                      Remove
-                    </button>
+                    )}
                   </div>
                 </div>
-              ))
-            ) : (
-              <div>No items in cart</div>
-            )}
+                <div className="col-md-12 col-lg-4">
+                  <div className="summary">
+                    <h3>Summary</h3>
+                    <div className="summary-item">
+                      <span className="text">Subtotal</span>
+                      <span className="price">${totalPrice.toFixed(2)}</span>
+                    </div>
+                    <div className="summary-item">
+                      <span className="text">Discount</span>
+                      <span className="price">$0</span>
+                    </div>
+                    <div className="summary-item">
+                      <span className="text">Shipping</span>
+                      <span className="price">$0</span>
+                    </div>
+                    <div className="summary-item">
+                      <span className="text">Total</span>
+                      <span className="price">${totalPrice.toFixed(2)}</span>
+                    </div>
+                    <Button href="/checkout" className="continue-shopping btn-dark mt-5" variant="primary" size="lg">
+                      Checkout <FontAwesomeIcon icon={faArrowCircleRight} />
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-
-          <hr></hr>
-          <div className="total-price">
-            <span style={{ marginRight: "12px" }}>
-              Subtotal {props.userData.cart?.length} item(s):
-            </span>
-            ${props.userData.totalPrice}
-          </div>
-        </div>
-
-        <div className="checkout-button">
-          <Link to="/checkout">
-            <button className="btn btn-secondary w-50">Checkout</button>
-          </Link>
-        </div>
-      </div>
+        </section>
+      </main>
       <Footer />
-    </>
+    </div>
   );
 };
 
