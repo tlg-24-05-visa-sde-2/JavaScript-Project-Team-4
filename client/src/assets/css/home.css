@@ -44,6 +44,7 @@
   color: #606c38;
   font-weight: bold;
   margin-bottom: 16px;
+  margin-top: 24px;
 }
 
 .featured-farmers {
@@ -77,14 +78,14 @@
 }
 
 .popular-products::-webkit-scrollbar-track {
-  background: #DDA15E; /* Color of the scrollbar track */
+  background: #dda15e; /* Color of the scrollbar track */
   border-radius: 5px;
 }
 
 .popular-products::-webkit-scrollbar-thumb {
-  background-color: #4CAF50; /* Color of the scrollbar thumb */
+  background-color: #4caf50; /* Color of the scrollbar thumb */
   border-radius: 5px;
-  border: 2px solid #DDA15E; /* Border around the scrollbar thumb */
+  border: 2px solid #dda15e; /* Border around the scrollbar thumb */
 }
 
 .popular-products-container h3 {
