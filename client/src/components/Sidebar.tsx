@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { PickerOverlay } from 'filestack-react';
+import { useNavigate } from 'react-router-dom';
 import '../assets/css/sidebar.css'; // Ensure this CSS file is imported
+import SignOut from './SignOut';
 
 interface SidebarProps {
   setActiveView: (view: string) => void;
@@ -12,6 +14,7 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ setActiveView, user, setShowPicker, showPicker, fileStackKey }) => {
   const [profileImage, setProfileImage] = useState<string | undefined>(user.profileImage || 'https://th.bing.com/th/id/OIP.ctA2REXIY1pykimhbEMYxQHaHa?w=219&h=219&c=7&r=0&o=5&pid=1.7');
+  const navigate = useNavigate();
 
   const handleUploadSuccess = (result: any) => {
     setProfileImage(result.filesUploaded[0].url);
@@ -22,8 +25,15 @@ const Sidebar: React.FC<SidebarProps> = ({ setActiveView, user, setShowPicker, s
     setShowPicker(true);
   };
 
+  const handleSignOutConfirmed = () => {
+    setActiveView('sign-out');
+    setTimeout(() => {
+      navigate('/login');
+    }, 2000);
+  };
+
   return (
-    <div className="sidebar">
+    <div className="sidebar2">
       <div className="upload-image-container mb-3">
         <img src={profileImage} alt="Profile" className="rounded-circle img-thumbnail" width="300" />
         <button className="btn btn-link" onClick={handleOpenPicker}>Change Picture</button>
@@ -43,7 +53,7 @@ const Sidebar: React.FC<SidebarProps> = ({ setActiveView, user, setShowPicker, s
         <button className="btn btn-outline-dark w-100 mb-2" onClick={() => setActiveView('favorites')}>Favorites</button>
         <button className="btn btn-outline-dark w-100 mb-2" onClick={() => setActiveView('personal-data')}>Personal Data</button>
         <button className="btn btn-outline-dark w-100 mb-2" onClick={() => setActiveView('product-reviews')}>Reviews</button>
-        <button className="btn btn-outline-dark w-100 mb-2" onClick={() => setActiveView('sign-out')}>Sign Out</button>
+        <SignOut onSignOutConfirmed={handleSignOutConfirmed} />
       </div>
     </div>
   );
