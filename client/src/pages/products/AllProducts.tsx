@@ -6,6 +6,7 @@ import AllCategories from "../../components/Products/AllCategories";
 import Fruits from "../../components/Products/Fruits";
 import Vegetables from "../../components/Products/Vegetables";
 import ProductService from "../../utils/ProductService";
+import SearchBar from "../../components/Products/SearchBar";
 import "../../assets/css/AllProducts.css"
 
 interface AllProductsProps {
@@ -51,6 +52,7 @@ function AllProducts({props}: AllProductsProps): React.ReactElement {
     return (
         <div className="allProducts-wrapper">
             <NavbarComponent props={props} />
+            <SearchBar setProducts={setProducts}/>
             <div className="d-flex flex-row">
                 <AllProductsSideNav setCategory={setCategory} currentCategory={category} />
                 <div className="allProducts-content">
@@ -58,7 +60,11 @@ function AllProducts({props}: AllProductsProps): React.ReactElement {
                         <h1>Loading...</h1>
                     ) : (
                         <>
-                            {renderCategoryComponent()}
+                        {products.length === 0 ? (
+                            <h1>No products found</h1>
+                        ) : 
+                            renderCategoryComponent()
+                        }
                         </>
                     )}
                 </div>

@@ -19,7 +19,6 @@ interface AllCategoriesProps {
 const AllCategories: React.FC<AllCategoriesProps> = ({ products, props }) => {
     return (
         <div>
-            <h1 className="text-center">All Categories</h1>
             <div className="d-flex flex-wrap justify-content-center">
                 {products && products.map((product: Product) => (
                     <SingleProduct props={props} key={product._id} product={product} />

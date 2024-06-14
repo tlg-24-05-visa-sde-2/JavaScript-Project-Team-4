@@ -15,6 +15,13 @@ interface CheckoutProps {
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
 const stripePromise = loadStripe('pk_test_51PQub32Kq7ZuBPIYsR2HmyA8hvnb8n2fmoOeUCtJT27wnEocqeQSVWWD7JaGn83fxGCveK5Jn2vgNWsKexKAEurP00FR4C2Kr4');
+let url: string;
+if(process.env.REACT_APP_PRODUCTION === 'false') {
+    url = 'http://localhost:3001';
+    } else {
+    url = 'https://hometownharvest-91162a140111.herokuapp.com';
+}
+
 
 function Checkout({ props }: CheckoutProps) {
     console.log(props.isLoggedIn)
@@ -25,7 +32,7 @@ function Checkout({ props }: CheckoutProps) {
     const fetchClientSecret = React.useCallback(async () => {
             
         // Create a Checkout Session
-        const res = await fetch("http://localhost:3001/api/payments/create-checkout-session", {
+        const res = await fetch(`${url}/api/payments/create-checkout-session`, {
             credentials: 'include',
             method: "POST",
         });
