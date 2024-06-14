@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+
+
+import React from 'react';
 import PersonalData from './PersonalData';
 import ProductReviews from './ProductReviews';
+import '../assets/css/maincontent.css'; // Ensure this CSS file is imported
 
 interface MainContentProps extends React.PropsWithChildren<{}> {
   user: any;
+  activeView: string;
 }
 
-const MainContent: React.FC<MainContentProps> = ({ user }) => {
-  const [activeView, setActiveView] = useState('default');
-
+const MainContent: React.FC<MainContentProps> = ({ user, activeView }) => {
   const renderContent = () => {
     switch (activeView) {
       case 'personal-data':
@@ -16,7 +18,7 @@ const MainContent: React.FC<MainContentProps> = ({ user }) => {
       case 'product-reviews':
         return <ProductReviews />;
       default:
-        return <div>Welcome to your profile!</div>;
+        return <div className="default-message">Select a menu item to view more information!</div>;
     }
   };
 

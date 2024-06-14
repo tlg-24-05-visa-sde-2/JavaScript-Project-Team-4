@@ -26,6 +26,8 @@
   "dependencies": {
     "@stripe/react-connect-js": "^3.3.8",
     "@types/axios": "^0.14.0",
-    "axios": "^1.7.2"
+    "@types/filestack-react": "^4.0.4",
+    "axios": "^1.7.2",
+    "filestack-react": "^5.0.0"
   }
 }

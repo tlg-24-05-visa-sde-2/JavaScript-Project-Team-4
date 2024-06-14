@@ -45,7 +45,7 @@ function App(): React.ReactElement {
     fetchUserdata();
   }, []);
 
-  const props = { setShowPicker, showPicker, userData, isLoggedIn } as any;
+  const props = { setShowPicker, showPicker, userData, isLoggedIn, fileStackKey } as any;
 
   return (
     <AuthProvider>
@@ -68,9 +68,7 @@ function App(): React.ReactElement {
           <Route path="/login" element={<Login />} />
           <Route path="/payments/setup" element={<Payments />} />
           <Route path='/products/create-product' element={<CreateProduct props={props} />} />
-          <Route path="/profile/*" element={<ProtectedRoute />}>
-            <Route path="" element={<Profile />} />
-          </Route>
+          <Route path="/profile" element={<Profile {...props} />} />
         </Routes>
       </Router>
     </AuthProvider>
