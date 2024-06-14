@@ -182,8 +182,10 @@ class UserService {
         credentials: "include",
       });
 
+
       const jsonResponse = await response.json();
 
+      console.log("Remove Favorite: ", jsonResponse);
       if (response.ok) {
         return jsonResponse;
       } else {
