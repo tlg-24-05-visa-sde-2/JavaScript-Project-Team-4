@@ -5,6 +5,8 @@ import ProductService from "../../utils/ProductService";
 import "../../assets/css/product.css";
 import Navbar from "../../components/Nabar";
 import Footer from "../../components/Footer";
+import UserService from "../../utils/UserService";
+import { toast } from "react-toastify";
 
 interface Product {
   id: string;
@@ -20,10 +22,30 @@ interface ProductDescriptionProps {
   props: any;
 }
 
-const ProductDescription = ({props}: ProductDescriptionProps): React.ReactElement => {
+const ProductDescription = ({
+  props,
+}: ProductDescriptionProps): React.ReactElement => {
   const [product, setProduct] = useState<Product | null>(null);
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams<{ id?: string }>();
+
+  const addProductToCart = async (e: any) => {
+    e.preventDefault();
+    let response;
+
+    if (id) {
+      response = await UserService.addProductToCart(id, quantity);
+    }
+
+    if (response.message === "Product added to shopping cart") {
+      props.setReRender(true);
+      toast.success(response.message, {
+        position: "top-center",
+      });
+    } else {
+      toast.error("Error adding product to cart");
+    }
+  };
 
   const handleQuantityUp = () => {
     setQuantity((quantity) => quantity + 1);
@@ -50,7 +72,7 @@ const ProductDescription = ({props}: ProductDescriptionProps): React.ReactElemen
 
   return (
     <>
-      <Navbar props={props}/>
+      <Navbar props={props} />
       <div className="product-container">
         <div className="product-img">
           <img src={product.image} alt={product.name} />
@@ -79,7 +101,11 @@ const ProductDescription = ({props}: ProductDescriptionProps): React.ReactElemen
           </Button>
         </div>
 
-        <Button variant="primary" className="product-button">
+        <Button
+          variant="primary"
+          className="product-button"
+          onClick={addProductToCart}
+        >
           Add to Cart
         </Button>
       </div>
