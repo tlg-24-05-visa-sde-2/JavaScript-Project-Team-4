@@ -24,6 +24,8 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
+    "@stripe/react-stripe-js": "^2.7.1",
+    "@stripe/stripe-js": "^3.5.0",
     "@stripe/react-connect-js": "^3.3.8",
     "@types/axios": "^0.14.0",
     "@types/filestack-react": "^4.0.4",
