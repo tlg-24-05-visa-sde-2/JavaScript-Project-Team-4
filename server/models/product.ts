@@ -70,6 +70,8 @@ interface ProductDocument extends Document {
     priceId: string;
 }
 
+productSchema.index({ name: 'text', description: 'text', tags: 'text'});
+
 const Product = mongoose.model<ProductDocument>("Product", productSchema);
 
 export { Product, ProductDocument, productSchema };
