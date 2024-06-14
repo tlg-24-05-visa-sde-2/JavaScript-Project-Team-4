@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { Product, ProductDocument } from '../models/product';
 const fs = require('fs');
-import productData from './productData.json';
+import productData from './updated_products.json';
 
 mongoose.connect('mongodb://localhost:27017/hometownharvest');
 

@@ -10,7 +10,9 @@ import CreateProduct from "./pages/products/CreateProduct";
 import { AuthProvider } from "./utils/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoutes";
 import ProductDescription from "./pages/products/ProductDescription";
-import AllProducts from "./pages/products/AllProducts";
+import AllProducts from './pages/products/AllProducts';
+import Checkout from './pages/Checkout';
+import Return from './pages/Return';
 import About from "./pages/About";
 import Cart from "./pages/Cart";
 
@@ -49,13 +51,16 @@ function App(): React.ReactElement {
     setReRender(false);
   }, [reRender]);
 
+
   const props = {
     setShowPicker,
     showPicker,
     userData,
     isLoggedIn,
+    fileStackKey,
     setReRender,
   } as any;
+
 
   return (
     <AuthProvider>
@@ -79,26 +84,27 @@ function App(): React.ReactElement {
           <Route path="/login" element={<Login />} />
           {/* Stripe */}
           <Route path="/payments/setup" element={<Payments />} />
-          <Route
-            path="/products/create-product"
-            element={<CreateProduct props={props} />}
-          />
+  
           {/* PRODUCTS */}
           <Route path="/products" element={<AllProducts props={props} />} />
-          <Route
-            path="/products/create-product"
-            element={<CreateProduct props={props} />}
-          />
+          <Route path='/products/create-product' element={<CreateProduct props={props} />} />
+          <Route path="/product/:id" element={<ProductDescription props={props} />} />
+
+          {/* Cart/Checkout */}
+          <Route path="/checkout" element={<Checkout props={props} />} />
+          <Route path="/return" element={<Return />} />
           <Route
             path="/product/:id"
             element={<ProductDescription props={props} />}
           />
           {/* User Profile */}
-          <Route path="/profile/*" element={<ProtectedRoute />}>
-            <Route path="" element={<Profile props={props} />} />
-          </Route>
+
+          <Route path="/profile" element={<Profile {...props} props={props} />} />
+
+          
           <Route path="/about" element={<About props={props} />} />
           <Route path="/cart" element={<Cart props={props} />} />
+
         </Routes>
       </Router>
     </AuthProvider>

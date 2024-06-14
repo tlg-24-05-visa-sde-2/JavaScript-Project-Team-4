@@ -42,6 +42,10 @@ const productSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: 'User',
             required: true
+        },
+        priceId: {
+            type: String,
+            required: false
         }
     },
     {
@@ -63,6 +67,7 @@ interface ProductDocument extends Document {
     sellersLocation: string;
     tags: string[];
     user: mongoose.Schema.Types.ObjectId;
+    priceId: string;
 }
 
 const Product = mongoose.model<ProductDocument>("Product", productSchema);

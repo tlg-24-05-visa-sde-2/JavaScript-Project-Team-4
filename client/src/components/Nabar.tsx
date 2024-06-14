@@ -167,7 +167,12 @@ export default function NavbarComponent({
                 <NavDropdown.Item href="/products/create-product">
                   New Product
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">Profile</NavDropdown.Item>
+                <NavDropdown.Item href="/checkout">
+                  Go to Checkout
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/profile">
+                  Profile
+                </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action/3.4" onClick={handleLogout}>
                   Logout
