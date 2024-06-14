@@ -139,8 +139,8 @@ export default function NavbarComponent({ props }: NavbarProps): React.ReactElem
                 <NavDropdown.Item href="/checkout">
                   Go to Checkout
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  Something
+                <NavDropdown.Item href="/profile">
+                  Profile
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action/3.4" onClick={handleLogout}>
