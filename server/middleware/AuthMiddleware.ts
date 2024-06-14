@@ -4,7 +4,13 @@ import { User, UserDocument } from '../models/user'; // Adjust the path to your 
 require('dotenv').config();
 
 export interface AuthenticatedRequest extends Request {
-    user?: UserDocument;
+    user: any;
+    body: any;
+    params: {
+      productId: string; // Adjust as per your route parameters
+    };
+    query: any;
+    cookies: any;
 }
 
 const authenticateUser = async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {

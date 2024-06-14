@@ -190,4 +190,22 @@ router.delete(
   }
 );
 
+router.get("/search/:query", async (req: Request, res: Response) => {
+  try {
+    const query = req.params.query;
+    console.log("Query:", query)
+    if (!query) {
+      return res.status(400).json({ error: 'Query parameter q is required' });
+    }
+
+    const products: ProductDocument[] = await Product.find({ $text: { $search: query } } );
+
+    res.status(200).json({ products });
+  } catch (error) {
+    console.error("Error searching for products:", error);
+    res.status(500).json({ error: `Internal server error: ${error.message}` });
+  }
+});
+
+
 export default router;
