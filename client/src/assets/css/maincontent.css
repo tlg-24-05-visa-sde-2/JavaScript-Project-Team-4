@@ -1,0 +1,14 @@
+/* 
+.main-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+} */
+
+.default-message {
+  font-size: 22px; /* Slightly larger font */
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+}

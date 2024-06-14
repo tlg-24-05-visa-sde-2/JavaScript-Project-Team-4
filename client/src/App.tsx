@@ -49,13 +49,16 @@ function App(): React.ReactElement {
     setReRender(false);
   }, [reRender]);
 
+
   const props = {
     setShowPicker,
     showPicker,
     userData,
     isLoggedIn,
+    fileStackKey,
     setReRender,
   } as any;
+
 
   return (
     <AuthProvider>
@@ -94,11 +97,13 @@ function App(): React.ReactElement {
             element={<ProductDescription props={props} />}
           />
           {/* User Profile */}
-          <Route path="/profile/*" element={<ProtectedRoute />}>
-            <Route path="" element={<Profile props={props} />} />
-          </Route>
+
+          <Route path="/profile" element={<Profile {...props} props={props} />} />
+
+          
           <Route path="/about" element={<About props={props} />} />
           <Route path="/cart" element={<Cart props={props} />} />
+
         </Routes>
       </Router>
     </AuthProvider>
