@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart as solidHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as regularHeart } from '@fortawesome/free-regular-svg-icons';
 import UserService from "../../utils/UserService";
-import "../../assets/css/single-card.css";
+import "../../assets/css/favorite.css";
 
 interface Product {
   image: string;
@@ -24,6 +27,7 @@ function SingleProduct({ product, props }: ProductProps): React.ReactElement {
   const { image, name, price, description, sellersName, _id } = product;
 
   const [quantity, setQuantity] = useState(1);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const handleQuantityUp = () => {
     setQuantity((quantity) => quantity + 1);
@@ -33,7 +37,6 @@ function SingleProduct({ product, props }: ProductProps): React.ReactElement {
     setQuantity((quantity) => (quantity > 1 ? quantity - 1 : quantity));
   };
 
-  // Add this handler
   const handleQuantityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(event.target.value, 10);
     if (!isNaN(value) && value > 0) {
@@ -55,8 +58,26 @@ function SingleProduct({ product, props }: ProductProps): React.ReactElement {
     }
   };
 
+  const toggleFavorite = async () => {
+    if (isFavorite) {
+      await UserService.removeFavoriteProduct(_id);
+      toast.info("Product removed from favorites");
+    } else {
+      await UserService.addFavoriteProduct(_id);
+      toast.success("Product added to favorites");
+    }
+    setIsFavorite(!isFavorite);
+  };
+
   return (
-    <Card style={{ width: "18rem", minHeight: "100%", margin: "5px", border: "2px solid #283618" }}>
+    <Card style={{ width: "18rem", minHeight: "100%", margin: "5px", border: "2px solid #283618", position: "relative" }}>
+      <FontAwesomeIcon
+        icon={isFavorite ? solidHeart : regularHeart}
+        onClick={toggleFavorite}
+        className="position-absolute top-0 end-0 m-2"
+        style={{ cursor: 'pointer', color: isFavorite ? 'red' : 'black' }}
+        size="lg"
+      />
       <Link to={`/product/${_id}`}>
         <Card.Img
           variant="top"
@@ -82,7 +103,7 @@ function SingleProduct({ product, props }: ProductProps): React.ReactElement {
             id="quantity"
             className="quantity"
             value={quantity}
-            onChange={handleQuantityChange} // Add this line
+            onChange={handleQuantityChange}
           />
           <Button onClick={handleQuantityUp} className="quantity-button">
             +
@@ -102,3 +123,4 @@ function SingleProduct({ product, props }: ProductProps): React.ReactElement {
 }
 
 export default SingleProduct;
+

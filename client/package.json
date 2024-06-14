@@ -9,8 +9,6 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@stripe/connect-js": "^3.3.6",
     "@stripe/react-connect-js": "^3.3.8",
-    "@stripe/react-stripe-js": "^2.7.1",
-    "@stripe/stripe-js": "^3.5.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -58,6 +56,9 @@
     ]
   },
   "devDependencies": {
+    "@stripe/react-connect-js": "^3.3.8",
+    "@stripe/react-stripe-js": "^2.7.1",
+    "@stripe/stripe-js": "^3.5.0",
     "@types/filestack-react": "^4.0.4",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.12.13",

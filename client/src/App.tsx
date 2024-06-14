@@ -63,7 +63,6 @@ function App(): React.ReactElement {
     showPicker,
     userData,
     isLoggedIn,
-    fileStackKey,
     setReRender,
     cartLength,
   } as any;
@@ -75,7 +74,7 @@ function App(): React.ReactElement {
         <ToastContainer theme="colored" autoClose={2000} />
         {showPicker && (
           <PickerOverlay
-            apikey={fileStackKey}
+            apikey={process.env.REACT_APP_FILESTACK_KEY as string}
             onUploadDone={(res: any) => handleUploadDone(res)}
             pickerOptions={{
               onClose: () => {

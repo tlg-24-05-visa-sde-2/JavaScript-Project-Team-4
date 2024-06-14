@@ -7,6 +7,7 @@ import NavbarComponent from '../components/Nabar';
 import CarouselComponent from '../components/Carousel';
 import Footer from '../components/Footer';
 import '../assets/css/profile.css';
+import { useNavigate } from 'react-router-dom';
 
 interface User {
   username: string;
@@ -33,7 +34,8 @@ const Profile: React.FC<ProfileProps> = ({ setShowPicker, showPicker, userData, 
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [activeView, setActiveView] = useState<string>('default');
-
+  const navigate = useNavigate();
+  
   useEffect(() => {
     const fetchUserData = async () => {
       try {
