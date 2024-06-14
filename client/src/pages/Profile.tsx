@@ -67,7 +67,7 @@ const Profile: React.FC<ProfileProps> = ({ setShowPicker, showPicker, userData, 
 
   return (
     <div>
-      <NavbarComponent />
+      <NavbarComponent props={{ userData, setReRender: setActiveView }} />
       <div className="container">
         <div className="row mt-4">
           <div className="col-md-3">
@@ -91,7 +91,7 @@ const Profile: React.FC<ProfileProps> = ({ setShowPicker, showPicker, userData, 
       </div>
       <div className="carousel-container mt-5">
         <div className="local-markets-text">
-          CHECK OUT LOCAL MARKETS NEAR YOU
+          Check out local markets near you
         </div>
         <CarouselComponent />
       </div>
@@ -101,4 +101,3 @@ const Profile: React.FC<ProfileProps> = ({ setShowPicker, showPicker, userData, 
 };
 
 export default Profile;
-

@@ -6,7 +6,7 @@ body {
 }
 
 .sidebar {
-  background-color: rgba(0, 100, 0, 0.082);
+  background-color: #1dbe4517;
   padding: 20px darkgreen;
   border-radius: 10px;
 }
@@ -22,7 +22,7 @@ body {
   margin: 5px 0;
   border: 1px solid #333;
   border-radius: 5px;
-  background-color: #1dbe4517;
+  background-color: #f0f7f217;
   cursor: pointer;
 }
 
@@ -30,17 +30,17 @@ body {
   background-color: #ddd;
 }
 
-.profile-header {
+/* .profile-header {
   display: flex;
   align-items: center;
   padding: 10px;
   flex-direction: column;
-}
+} */
 
-.profile-header img {
+/* .profile-header img {
   border-radius: 50%;
   margin-bottom: 10px;
-}
+} */
 
 .welcome-text {
   margin-top: 10px;
@@ -69,15 +69,12 @@ body {
  
 }
 
-.top-image-container {
+/* .top-image-container {
   width: 100%;
   text-align: center;
   margin-bottom: 20px;
-}
+} */
 
-.card mb-4 {
-  color: #1dbe4517;
-} 
 
 .background-image {
   width: 100%;
@@ -89,7 +86,7 @@ body {
 
 .carousel-container {
   width: 100%;
-  padding: 20px;
+  padding: 10px;
   background-color: #1dbe4517;
 }
 

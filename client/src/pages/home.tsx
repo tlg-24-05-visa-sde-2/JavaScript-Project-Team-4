@@ -6,7 +6,11 @@ import CarouselComponent from "../components/Carousel";
 import ProductService from "../utils/ProductService";
 import Products from "./products/Products";
 
-function Home(): React.ReactElement {
+interface HomeProps {
+  props: any;
+}
+
+function Home({props}: HomeProps): React.ReactElement {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -19,7 +23,7 @@ function Home(): React.ReactElement {
 
   return (
     <div className="home-wrapper">
-      <Navbar />
+      <Navbar props={props} />
       <div>
         <div className="call-to-action">
           <div className="call-to-action-slogan">
@@ -39,7 +43,7 @@ function Home(): React.ReactElement {
         <div className="popular-products-container">
           <h3>Popular Products</h3>
           <div className="popular-products">
-            <Products products={products} />
+            <Products props={props} products={products} />
           </div>
         </div>
 
