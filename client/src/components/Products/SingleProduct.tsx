@@ -44,10 +44,11 @@ function SingleProduct({ product, props }: ProductProps): React.ReactElement {
     e.preventDefault();
 
     const response = await UserService.addProductToCart(_id, quantity);
-    console.log(response);
     if (response.message  === "Product added to shopping cart") {
       props.setReRender(true);
-      toast.success(response.message);
+      toast.success(response.message, {
+        position: "top-center",
+      });
     } else {
       toast.error("Error adding product to cart");
     }

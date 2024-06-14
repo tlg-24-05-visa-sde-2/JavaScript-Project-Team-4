@@ -15,6 +15,7 @@ interface CreateProductProps {
         userData: any;
         isLoggedIn: boolean;
         setShowPicker: any;
+        setReRender: any;
     };
 }
 

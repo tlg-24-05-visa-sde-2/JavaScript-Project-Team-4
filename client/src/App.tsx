@@ -19,7 +19,7 @@ function App(): React.ReactElement {
   const fileStackKey = process.env.REACT_APP_FILESTACK_KEY ?? ""; // FileStack API KEY
   const [reRender, setReRender] = useState<boolean>(false); // For re-rendering the component
 
-  console.log("userData", userData);
+
   const fetchUserdata = async () => {
     const loggedIn = await AuthService.checkLogin();
     setIsLoggedIn(loggedIn);
@@ -37,7 +37,6 @@ function App(): React.ReactElement {
     try {
       const fileUrl = res.filesUploaded[0].url.trim(); // Get the imageUrl from the fileStack response
       localStorage.setItem("fileUrl", fileUrl); // Save the imageUrl to the localStorage
-
       setShowPicker(false); // Close the fileStack uploader
     } catch (error) {
       console.error(error);
