@@ -44,7 +44,7 @@ function SingleProduct({ product, props }: ProductProps): React.ReactElement {
     e.preventDefault();
 
     const response = await UserService.addProductToCart(_id, quantity);
-    if (response.message  === "Product added to shopping cart") {
+    if (response.message === "Product added to shopping cart") {
       props.setReRender(true);
       toast.success(response.message, {
         position: "top-center",
@@ -52,10 +52,10 @@ function SingleProduct({ product, props }: ProductProps): React.ReactElement {
     } else {
       toast.error("Error adding product to cart");
     }
-  }
+  };
 
   return (
-    <Card style={{ width: "18rem", height: "100%" }}>
+    <Card style={{ width: "18rem", minHeight: "100%" }}>
       <Link to={`/product/${_id}`}>
         <Card.Img
           variant="top"
@@ -70,9 +70,6 @@ function SingleProduct({ product, props }: ProductProps): React.ReactElement {
         </Link>
 
         <Card.Text>{sellersName}</Card.Text>
-        <div className="card-description">
-          <Card.Text>{description}</Card.Text>
-        </div>
 
         <Card.Text>from ${price}</Card.Text>
         <div className="quantity-container">
@@ -91,7 +88,11 @@ function SingleProduct({ product, props }: ProductProps): React.ReactElement {
           </Button>
         </div>
 
-        <Button variant="primary" onClick={addProductToCart} className="product-button">
+        <Button
+          variant="primary"
+          onClick={addProductToCart}
+          className="product-button"
+        >
           Add to Cart
         </Button>
       </Card.Body>
