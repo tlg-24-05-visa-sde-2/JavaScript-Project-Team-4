@@ -15,6 +15,8 @@ const Favorites: React.FC<FavoritesProps> = ({ user }) => {
     const fetchFavorites = async () => {
       const data = await UserService.fetchUserData();
       if (data && data.user && data.user.favorites) {
+
+        console.log("Data from useEffect: ", data);
         const uniqueFavorites = data.user.favorites.filter((favorite: any, index: number, self: any[]) =>
           index === self.findIndex((f: any) => f._id === favorite._id)
         );
@@ -39,6 +41,7 @@ const Favorites: React.FC<FavoritesProps> = ({ user }) => {
   };
 
   const handleRemoveFavorite = async (index: number) => {
+    console.log("Removed Favorite clicked");
     const productId = favorites[index]._id;
     const response = await UserService.removeFavoriteProduct(productId);
     if (response && response.message === 'Product removed from favorites') {
